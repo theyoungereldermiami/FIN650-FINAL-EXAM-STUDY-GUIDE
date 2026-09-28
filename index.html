@@ -1,0 +1,1467 @@
+<!DOCTYPE html>
+<p>&lt;!doctype html&gt; <html lang="en"> <head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>FIN650 Final Study Studio</title> <style>
+:root{--bg:#f3f6f1;--card:#fff;--ink:#14332f;--muted:#657875;--line:#d8e2dd;--pill:#e8eee5;--accent:#0b6b62;--soft:#e9efe8;--good:#246b4a;--bad:#9b3e3e;--shadow:0
+10px 28px rgba(23,55,47,.06)} <em>{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe
+UI,Roboto,Arial,sans-serif} .shell{max-width:1560px;margin:0
+auto;padding:42px 38px 58px}
+.eyebrow{font-size:13px;font-weight:800;letter-spacing:.22em;color:var(--accent);margin-bottom:14px}
+h1{font-size:48px;line-height:1.02;margin:0 0
+10px;font-weight:800;letter-spacing:-.035em}
+.subtitle{font-size:18px;color:var(--muted);margin-bottom:42px}
+.layout{display:grid;grid-template-columns:365px
+minmax(0,1fr);gap:34px;align-items:start}
+.sidebar{background:rgba(255,255,255,.74);border:1px solid
+var(--line);border-radius:18px;padding:25px;position:sticky;top:18px}
+.sidebar h2{font-size:24px;margin:0 0 20px} .filter{margin:0 0 21px}
+.filter
+label{display:block;font-weight:750;font-size:14px;margin-bottom:8px}
+select,input[type=text]{width:100%;border:1px solid
+#cfdad5;border-radius:10px;background:#fff;padding:11px
+12px;font-size:15px;color:var(--ink);outline:none}
+select:focus,input:focus{border-color:#7ca79f;box-shadow:0 0 0 3px
+rgba(11,107,98,.08)} .chapter-chips{display:flex;gap:6px;flex-wrap:wrap}
+.chapter-chip{border:1px solid #cfdad5;background:#fff;padding:7px
+11px;border-radius:8px;cursor:pointer;font-size:14px}
+.chapter-chip.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+.main{min-width:0}
+.stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-bottom:26px}
+.stat{background:#e5ece2;border-radius:15px;padding:24px
+18px;min-height:108px} .stat
+.v{font-size:28px;font-weight:800;margin-bottom:12px} .stat
+.k{color:var(--muted);font-size:13px}
+.tabs{display:flex;border-bottom:1px solid
+var(--line);gap:5px;margin-bottom:24px} .tab{padding:13px
+17px;border:0;background:transparent;color:var(--ink);font-size:16px;cursor:pointer;border-radius:6px
+6px 0 0} .tab.active{background:#fff;border:1px solid
+var(--line);border-bottom-color:#fff;margin-bottom:-1px}
+.panel{display:none} .panel.active{display:block}
+.card{background:#fff;border:1px solid
+var(--line);border-radius:20px;padding:36px;box-shadow:var(--shadow)}
+.card-index{font-size:12px;letter-spacing:.18em;color:#71837f;margin-bottom:24px}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px}
+.tag{background:var(--pill);padding:7px
+12px;border-radius:20px;font-size:12px;color:#2e4945}
+.question{font-size:24px;line-height:1.55;font-weight:700;max-width:1050px;margin:0
+0 20px} .context{white-space:pre-line;background:#f6f8f5;border-left:4px
+solid #b6c8bf;padding:14px
+16px;border-radius:8px;margin-bottom:20px;color:#425a55;line-height:1.45}
+.choices{display:grid;gap:9px;max-width:760px} .choice{border:1px solid
+var(--line);background:#fff;border-radius:12px;padding:14px
+16px;cursor:pointer;text-align:left;font-size:16px;display:flex;gap:10px;align-items:flex-start}
+.choice:hover{border-color:#9fb7ae;background:#fbfcfa}
+.choice.selected{border-color:var(--accent);box-shadow:0 0 0 2px
+rgba(11,107,98,.08)}
+.choice.correct{border-color:#5e9d78;background:#eef7f1}
+.choice.wrong{border-color:#bd7c7c;background:#fbefef}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+button.primary,button.secondary{border-radius:10px;padding:11px
+15px;font-size:14px;font-weight:700;cursor:pointer}
+button.primary{background:var(--ink);color:#fff;border:1px solid
+var(--ink)} button.secondary{background:#fff;color:var(--ink);border:1px
+solid var(--line)} button:disabled{opacity:.45;cursor:not-allowed}
+.feedback{margin-top:22px;padding:17px;border-radius:12px;background:#f5f7f4;line-height:1.55;display:none}
+.feedback.show{display:block} .feedback.good{border-left:4px solid
+var(--good)} .feedback.bad{border-left:4px solid var(--bad)}
+.empty{padding:60px;text-align:center;color:var(--muted)}
+.formula-toolbar{display:grid;grid-template-columns:1fr 210px
+210px;gap:10px;margin-bottom:18px} .formula-list{display:grid;gap:12px}
+.formula-card{background:#fff;border:1px solid
+var(--line);border-radius:15px;padding:20px 22px}
+.formula-top{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}
+.formula-name{font-size:18px;font-weight:800}
+.priority{font-size:11px;background:var(--pill);padding:6px
+9px;border-radius:20px;white-space:nowrap} .eq{font-family:'Cambria
+Math','STIX Two Math',Georgia,serif;font-size:19px;margin:14px
+0;padding:12px 14px;background:#f6f8f5;border-radius:9px;overflow:auto}
+.meta{color:var(--muted);font-size:13px;line-height:1.55} .meta
+b{color:#405852}
+.progress-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.progress-box{background:#fff;border:1px solid
+var(--line);border-radius:14px;padding:20px}
+.bar{height:9px;background:#e5ebe7;border-radius:99px;overflow:hidden;margin-top:8px}
+.bar>span{display:block;height:100%;background:var(--accent)}
+.sources h3{margin-top:26px} .sources p,.sources
+li{color:#536964;line-height:1.65}
+.small{font-size:12px;color:var(--muted)}
+@media(max-width:1050px){.layout{grid-template-columns:1fr}.sidebar{position:static}.stats{grid-template-columns:repeat(2,1fr)}.formula-toolbar{grid-template-columns:1fr}}
+@media(max-width:650px){.shell{padding:25px
+16px}h1{font-size:37px}.stats{grid-template-columns:1fr
+1fr}.card{padding:22px}.question{font-size:20px}} </style> </head>
+<body><div class="shell"> <div class="eyebrow">FIN650 / FINAL STUDY
+STUDIO</div><h1>Risk. Value.
+Performance.</h1><div class="subtitle">Final-exam flashcards + a
+searchable formula library from Lectures 4–7 and the provided practice
+bank.</div> <div class="layout"> <aside class="sidebar"><h2>Build your
+deck</h2>
+<div class="filter"><label>Chapter</label><div class="chapter-chips" id="chapterChips"><button class="chapter-chip active" data-ch="all">All</button><button class="chapter-chip" data-ch="8">Chapter
+8</button><button class="chapter-chip" data-ch="9">Chapter
+9</button><button class="chapter-chip" data-ch="18">Chapter
+18</button><button class="chapter-chip" data-ch="24">Chapter
+24</button></div></div>
+<div class="filter"><label>Source</label><select id="sourceFilter"><option value="all">All
+professor practice questions</option></select></div>
+<div class="filter"><label>Topic</label><select id="topicFilter"><option value="all">All
+topics</option></select></div> <div class="filter"><label>Formula
+type</label><select id="formulaFilter"><option value="all">All formula
+types</option></select></div>
+<div class="filter"><label>Difficulty</label><select id="difficultyFilter"><option value="all">All
+difficulties</option><option>Easy</option><option>Intermediate</option><option>Hard</option></select></div>
+<div class="filter"><label>Math
+included</label><select id="mathFilter"><option value="all">Either</option><option>Yes</option><option>No</option></select></div>
+<div class="filter"><label>Search question or
+ID</label><input id="searchFilter" type="text" placeholder="e.g., alpha, C18-Q10"></input></div>
+<div class="small">Tip: formula prerequisites from Chapters 5–7 are in
+the Formula Library, not mixed into the final practice-question
+deck.</div> </aside> <main class="main">
+<div class="stats"><div class="stat"><div class="v" id="attempts">0</div><div class="k">Attempts</div></div><div class="stat"><div class="v" id="correct">0</div><div class="k">Correct</div></div><div class="stat"><div class="v" id="incorrect">0</div><div class="k">Incorrect</div></div><div class="stat"><div class="v" id="accuracy">—</div><div class="k">Accuracy</div></div><div class="stat"><div class="v" id="attemptedCards">0
+/ 71</div><div class="k">Cards attempted</div></div></div>
+<div class="tabs"><button class="tab active" data-tab="flashcards">Flashcards</button><button class="tab" data-tab="formulas">Formula
+library</button><button class="tab" data-tab="progress">Progress</button><button class="tab" data-tab="sources">Sources
+&amp; help</button></div>
+<section class="panel active" id="flashcards"><div id="cardMount"></div></section>
+<section class="panel" id="formulas"><div class="formula-toolbar"><input id="formulaSearch" type="text" placeholder="Search formula, variable, topic…"><select id="formulaChapter"><option value="all">All
+chapters / Income
+hedging</option></select><select id="formulaPriority"><option value="all">All
+priorities</option><option>Core</option><option>Core
+prerequisite</option><option>Supporting</option></select></div><div id="formulaMount" class="formula-list"></div></section>
+<section class="panel" id="progress"><div id="progressMount"></div></section>
+<section class="panel" id="sources"><div class="card sources"><h2>How
+this deck was built</h2><p>The flashcards reproduce the provided
+professor practice bank for Chapters 8, 9, 18, and 24, then add study
+tags (difficulty, math Y/N, topic, and formula type). Table inputs that
+were embedded as images in the source PDF are repeated in text so each
+question is self-contained.</p><h3>Formula scope</h3><p>The formula
+library follows Lecture 4 (asset pricing/CAPM), Lecture 5 (performance
+evaluation), Lecture 6 (income hedging), and Lecture 7 (equity
+valuation). A small “Prerequisite” section includes earlier formulas
+only where the final material directly reuses them.</p><h3>Notation
+note</h3><p>Chapter 18 practice questions use <b>k</b> for the
+required/discount rate while Lecture 7 uses <b>r</b>. The source
+explicitly treats these as alternative notation; the formula library
+mainly uses <b>r</b>.</p><h3>Progress</h3><p>Progress is stored in this
+browser only. Use “Reset progress” in the Progress tab if you want a
+clean run.</p></div></section> </main></div></div> <script> const
+QUESTIONS=[{"chapter": 8, "page": 1, "qnum": 1, "question": "The index
+(CAPM) model has been estimated for stocks A and B with the following
+results: R = 0.03 + 0.7R + e A M A R = 0.01 + 0.9R + e B M B s = 0.35
+s(e ) = 0.20 s(e ) = 0.10 M A B The covariance between the returns on
+stocks A and B is ___________.", "option<em>A": "0.0384",
+"option</em>B": "0.0406", "option<em>C": "0.1920", "option</em>D":
+"0.0772", "option<em>E": "0.4000", "explanation": "Cov(RA,RB) = bAbBs2M
+= 0.7(0.9)(0.35)2 = 0.0772.", "id": "C8-Q01", "answer": "D", "topic":
+"Index-model covariance", "math": "Yes", "difficulty": "Intermediate",
+"formula</em>type": "Index model", "source": "Professor practice bank:
+MS short chapters 8 9 18 24", "source<em>page": 1, "context": "",
+"formula</em>id": "F08-04", "correct<em>answer</em>text": "0.0772"},
+{"chapter": 8, "page": 1, "qnum": 2, "question": "In the CAPM model, the
+return on a stock in a particular period will be related to _________.",
+"option<em>A": "firm-specific events", "option</em>B":
+"macroeconomic/market events", "option<em>C": "the error term",
+"option</em>D": "both A and B", "option<em>E": "neither A nor B",
+"explanation": "The return on a stock is related to both firm-specific
+and macroeconomic events.", "id": "C8-Q02", "answer": "D", "topic":
+"Index model: macro vs. firm-specific risk", "math": "No", "difficulty":
+"Easy", "formula</em>type": "Index model", "source": "Professor practice
+bank: MS short chapters 8 9 18 24", "source<em>page": 1, "context": "",
+"formula</em>id": "Concept only", "correct<em>answer</em>text": "both A
+and B"}, {"chapter": 8, "page": 1, "qnum": 3, "question": "The index
+model for stock A has been estimated with the following result: R = 0.01
++ 0.9R + e A M A If s = 0.25 and R2 = 0.25, the standard deviation of
+return of stock A is _________. M A", "option<em>A": "0.2025",
+"option</em>B": "0.2500", "option<em>C": "0.4500", "option</em>D":
+"0.8100", "option<em>E": "none of the above R2 = b2s2M / s2; 0.25 =
+[(0.81)(0.25)2]/s2; s = 0.4500.", "explanation": "8-1", "id": "C8-Q03",
+"answer": "C", "topic": "R-squared and total volatility", "math": "Yes",
+"difficulty": "Hard", "formula</em>type": "R² / risk decomposition",
+"source": "Professor practice bank: MS short chapters 8 9 18 24",
+"source<em>page": 1, "context": "", "formula</em>id": "F08-06",
+"correct<em>answer</em>text": "0.4500"}, {"chapter": 8, "page": 2,
+"qnum": 4, "question": "The Security Characteristic Line (SCL)",
+"option<em>A": "plots the excess return on a security as a function of
+the excess return on the market.", "option</em>B": "allows one to
+estimate the beta of the security.", "option<em>C": "allows one to
+estimate the alpha of the security.", "option</em>D": "all of the
+above.", "option<em>E": "none of the above.", "explanation": "The
+security characteristic line, which plots the excess return of the
+security as a function of the excess return of the market allows one to
+estimate both the alpha and the beta of the security.", "id": "C8-Q04",
+"answer": "D", "topic": "Security Characteristic Line (SCL)", "math":
+"No", "difficulty": "Easy", "formula</em>type": "Regression / SCL",
+"source": "Professor practice bank: MS short chapters 8 9 18 24",
+"source<em>page": 2, "context": "", "formula</em>id": "F08-02",
+"correct<em>answer</em>text": "all of the above."}, {"chapter": 8,
+"page": 2, "qnum": 5, "question": "Covariances between security returns
+tend to be", "option<em>A": "positive because of SEC regulations.",
+"option</em>B": "positive because of Exchange regulations.",
+"option<em>C": "positive because of economic forces that affect many
+firms.", "option</em>D": "negative because of SEC regulations.",
+"option<em>E": "negative because of economic forces that affect many
+firms.", "explanation": "Economic forces such as business cycles,
+interest rates, and technological changes tend to have similar impacts
+on many firms.", "id": "C8-Q05", "answer": "C", "topic": "Covariance and
+common economic factors", "math": "No", "difficulty": "Easy",
+"formula</em>type": "Covariance", "source": "Professor practice bank: MS
+short chapters 8 9 18 24", "source<em>page": 2, "context": "",
+"formula</em>id": "Concept only", "correct<em>answer</em>text":
+"positive because of economic forces that affect many firms."},
+{"chapter": 8, "page": 2, "qnum": 6, "question": "One \"cost\" of the
+single-index model is that it", "option<em>A": "is virtually impossible
+to apply.", "option</em>B": "prohibits specialization of efforts within
+the security analysis industry.", "option<em>C": "requires forecasts of
+the money supply.", "option</em>D": "is legally prohibited by the SEC.",
+"option<em>E": "allows for only two kinds of risk - macro risk and micro
+risk.", "explanation": "One \"cost\" of the single-index model is that
+it allows for only two kinds of risk - macro risk and micro risk.",
+"id": "C8-Q06", "answer": "E", "topic": "Single-index model
+limitations", "math": "No", "difficulty": "Easy", "formula</em>type":
+"Index model", "source": "Professor practice bank: MS short chapters 8 9
+18 24", "source<em>page": 2, "context": "", "formula</em>id": "Concept
+only", "correct<em>answer</em>text": "allows for only two kinds of risk
+- macro risk and micro risk."}, {"chapter": 8, "page": 2, "qnum": 7,
+"question": "The Security Characteristic Line (SCL) associated with the
+single-index model is a plot of", "option<em>A": "the security's returns
+on the vertical axis and the market index's returns on the horizontal
+axis.", "option</em>B": "the market index's returns on the vertical axis
+and the security's returns on the horizontal axis.", "option<em>C": "the
+security's excess returns on the vertical axis and the market index's
+excess returns on the horizontal axis.", "option</em>D": "the market
+index's excess returns on the vertical axis and the security's excess
+returns on the horizontal axis.", "option<em>E": "the security's returns
+on the vertical axis and Beta on the horizontal axis.", "explanation":
+"The student needs to remember that it is the excess returns that are
+plotted and that the security's returns are plotted as a dependent
+variable. 8-2", "id": "C8-Q07", "answer": "C", "topic": "Security
+Characteristic Line (SCL)", "math": "No", "difficulty": "Easy",
+"formula</em>type": "Regression / SCL", "source": "Professor practice
+bank: MS short chapters 8 9 18 24", "source<em>page": 2, "context": "",
+"formula</em>id": "F08-02", "correct<em>answer</em>text": "the
+security's excess returns on the vertical axis and the market index's
+excess returns on the horizontal axis."}, {"chapter": 9, "page": 3,
+"qnum": 1, "question": "In the context of the Capital Asset Pricing
+Model (CAPM) the relevant risk is", "option<em>A": "unique risk.",
+"option</em>B": "systematic risk.", "option<em>C": "standard deviation
+of returns.", "option</em>D": "variance of returns.", "option<em>E":
+"none of the above.", "explanation": "Once a portfolio is diversified,
+the only risk remaining is systematic risk, which is measured by beta.",
+"id": "C9-Q01", "answer": "B", "topic": "Systematic risk", "math": "No",
+"difficulty": "Easy", "formula</em>type": "CAPM concept", "source":
+"Professor practice bank: MS short chapters 8 9 18 24",
+"source<em>page": 3, "context": "", "formula</em>id": "F09-01",
+"correct<em>answer</em>text": "systematic risk."}, {"chapter": 9,
+"page": 3, "qnum": 2, "question": "In the context of the Capital Asset
+Pricing Model (CAPM) the relevant risk is", "option<em>A": "unique
+risk.", "option</em>B": "market risk.", "option<em>C": "standard
+deviation of returns.", "option</em>D": "variance of returns.",
+"option<em>E": "none of the above.", "explanation": "Once a portfolio is
+diversified, the only risk remaining is systematic risk, which is
+measured by beta.", "id": "C9-Q02", "answer": "B", "topic": "Systematic
+risk", "math": "No", "difficulty": "Easy", "formula</em>type": "CAPM
+concept", "source": "Professor practice bank: MS short chapters 8 9 18
+24", "source<em>page": 3, "context": "", "formula</em>id": "F09-01",
+"correct<em>answer</em>text": "market risk."}, {"chapter": 9, "page": 3,
+"qnum": 3, "question": "According to the Capital Asset Pricing Model
+(CAPM) a well diversified portfolio's rate of return is a function of",
+"option<em>A": "market risk.", "option</em>B": "unsystematic risk.",
+"option<em>C": "unique risk.", "option</em>D": "reinvestment risk.",
+"option<em>E": "none of the above.", "explanation": "With a diversified
+portfolio, the only risk remaining is market, or systematic, risk. This
+is the only risk that influences return according to the CAPM.", "id":
+"C9-Q03", "answer": "A", "topic": "Systematic risk", "math": "No",
+"difficulty": "Easy", "formula</em>type": "CAPM concept", "source":
+"Professor practice bank: MS short chapters 8 9 18 24",
+"source<em>page": 3, "context": "", "formula</em>id": "F09-01",
+"correct<em>answer</em>text": "market risk."}, {"chapter": 9, "page": 3,
+"qnum": 4, "question": "According to the Capital Asset Pricing Model
+(CAPM) a well diversified portfolio's rate of return is a function of",
+"option<em>A": "beta risk.", "option</em>B": "unsystematic risk.",
+"option<em>C": "unique risk.", "option</em>D": "reinvestment risk.",
+"option<em>E": "none of the above.", "explanation": "With a diversified
+portfolio, the only risk remaining is market, beta, or systematic, risk.
+This is the only risk that influences return according to the CAPM.
+9-1", "id": "C9-Q04", "answer": "A", "topic": "Beta and systematic
+risk", "math": "No", "difficulty": "Easy", "formula</em>type": "Beta",
+"source": "Professor practice bank: MS short chapters 8 9 18 24",
+"source<em>page": 3, "context": "", "formula</em>id": "F09-01",
+"correct<em>answer</em>text": "beta risk."}, {"chapter": 9, "page": 4,
+"qnum": 5, "question": "The risk-free rate and the expected market rate
+of return are 0.06 and 0.12, respectively. According to the capital
+asset pricing model (CAPM), the expected rate of return on security X
+with a beta of 1.2 is equal to.", "option<em>A": "0.06.",
+"option</em>B": "0.144.", "option<em>C": "0.12.", "option</em>D":
+"0.132.", "option<em>E": "0.18.", "explanation": "E(R) = 6% + 1.2(12 -
+6) = 13.2%.", "id": "C9-Q05", "answer": "D", "topic": "CAPM expected
+return", "math": "Yes", "difficulty": "Intermediate",
+"formula</em>type": "CAPM", "source": "Professor practice bank: MS short
+chapters 8 9 18 24", "source<em>page": 4, "context": "",
+"formula</em>id": "F09-01", "correct<em>answer</em>text": "0.132."},
+{"chapter": 9, "page": 4, "qnum": 6, "question": "Which statement is not
+true regarding the Capital Market Line (CML)?", "option<em>A": "The CML
+is the line from the risk-free rate through the market portfolio.",
+"option</em>B": "The CML is the best attainable capital allocation
+line.", "option<em>C": "The CML is also called the security market
+line.", "option</em>D": "The CML always has a positive slope.",
+"option<em>E": "The risk measure for the CML is standard deviation.",
+"explanation": "Both the Capital Market Line and the Security Market
+Line depict risk/return relationships. However, the risk measure for the
+CML is standard deviation and the risk measure for the SML is beta (thus
+C is not true; the other statements are true).", "id": "C9-Q06",
+"answer": "C", "topic": "CML vs. SML", "math": "No", "difficulty":
+"Easy", "formula</em>type": "Risk-return lines", "source": "Professor
+practice bank: MS short chapters 8 9 18 24", "source<em>page": 4,
+"context": "", "formula</em>id": "Concept only",
+"correct<em>answer</em>text": "The CML is also called the security
+market line."}, {"chapter": 9, "page": 4, "qnum": 7, "question":
+"According to the Capital Asset Pricing Model (CAPM), the expected rate
+of return on any security is equal to", "option<em>A": "R+ b [E(R )]. f
+M", "option</em>B": "R+ b [E(R ) - R]. f M f", "option<em>C": "b [E(R )
+- R]. M f", "option</em>D": "E(R ) + R. M f", "option<em>E": "none of
+the above.", "explanation": "The expected rate of return on any security
+is equal to the risk free rate plus the systematic risk of the security
+(beta) times the market risk premium, E(R - R). M f", "id": "C9-Q07",
+"answer": "B", "topic": "CAPM expected return", "math": "No",
+"difficulty": "Easy", "formula</em>type": "CAPM", "source": "Professor
+practice bank: MS short chapters 8 9 18 24", "source<em>page": 4,
+"context": "", "formula</em>id": "F09-01", "correct<em>answer</em>text":
+"R+ b [E(R ) - R]. f M f"}, {"chapter": 9, "page": 4, "qnum": 8,
+"question": "The Security Market Line (SML) is", "option<em>A": "the
+line that describes the expected return-beta relationship for
+well-diversified portfolios only.", "option</em>B": "also called the
+Capital Allocation Line.", "option<em>C": "the line that is tangent to
+the efficient frontier of all risky assets.", "option</em>D": "the line
+that represents the expected return-beta relationship.", "option<em>E":
+"all of the above. The SML is a measure of expected return per unit of
+risk, where risk is defined as beta (systematic risk).", "explanation":
+"9-2", "id": "C9-Q08", "answer": "D", "topic": "Security Market Line
+(SML)", "math": "No", "difficulty": "Easy", "formula</em>type": "SML",
+"source": "Professor practice bank: MS short chapters 8 9 18 24",
+"source<em>page": 4, "context": "", "formula</em>id": "F09-01",
+"correct<em>answer</em>text": "the line that represents the expected
+return-beta relationship."}, {"chapter": 9, "page": 5, "qnum": 9,
+"question": "According to the Capital Asset Pricing Model (CAPM),
+underpriced securities", "option<em>A": "have positive betas.",
+"option</em>B": "have zero alphas.", "option<em>C": "have negative
+betas.", "option</em>D": "have positive alphas.", "option<em>E": "none
+of the above.", "explanation": "According to the Capital Asset Pricing
+Model (CAPM), underpriced securities have positive alphas.", "id":
+"C9-Q09", "answer": "D", "topic": "Alpha and mispricing", "math": "No",
+"difficulty": "Easy", "formula</em>type": "Alpha", "source": "Professor
+practice bank: MS short chapters 8 9 18 24", "source<em>page": 5,
+"context": "", "formula</em>id": "Concept only",
+"correct<em>answer</em>text": "have positive alphas."}, {"chapter": 9,
+"page": 5, "qnum": 10, "question": "According to the Capital Asset
+Pricing Model (CAPM),", "option<em>A": "a security with a positive alpha
+is considered overpriced.", "option</em>B": "a security with a zero
+alpha is considered to be a good buy.", "option<em>C": "a security with
+a negative alpha is considered to be a good buy.", "option</em>D": "a
+security with a positive alpha is considered to be underpriced.",
+"option<em>E": "none of the above.", "explanation": "A security with a
+positive alpha is one that is expected to yield an abnormal positive
+rate of return, based on the perceived risk of the security, and thus is
+underpriced.", "id": "C9-Q10", "answer": "D", "topic": "Alpha and
+mispricing", "math": "No", "difficulty": "Easy", "formula</em>type":
+"Alpha", "source": "Professor practice bank: MS short chapters 8 9 18
+24", "source<em>page": 5, "context": "", "formula</em>id": "Concept
+only", "correct<em>answer</em>text": "a security with a positive alpha
+is considered to be underpriced."}, {"chapter": 9, "page": 5, "qnum":
+11, "question": "The risk-free rate is 7 percent. The expected market
+rate of return is 15 percent. If you expect a stock with a beta of 1.3
+to offer a rate of return of 12 percent, you should", "option<em>A":
+"buy the stock because it is overpriced.", "option</em>B": "sell short
+the stock because it is overpriced.", "option<em>C": "sell the stock
+short because it is underpriced.", "option</em>D": "buy the stock
+because it is underpriced.", "option<em>E": "none of the above, as the
+stock is fairly priced.", "explanation": "12% &lt; 7% + 1.3(15% - 7%) =
+17.40%; therefore, stock is overpriced and should be shorted.", "id":
+"C9-Q11", "answer": "B", "topic": "CAPM mispricing test", "math": "Yes",
+"difficulty": "Hard", "formula</em>type": "CAPM + alpha", "source":
+"Professor practice bank: MS short chapters 8 9 18 24",
+"source<em>page": 5, "context": "", "formula</em>id": "F09-02",
+"correct<em>answer</em>text": "sell short the stock because it is
+overpriced."}, {"chapter": 9, "page": 5, "qnum": 12, "question": "You
+invest $600 in a security with a beta of 1.2 and $400 in another
+security with a beta of 0.90. The beta of the resulting portfolio is",
+"option<em>A": "1.40", "option</em>B": "1.00", "option<em>C": "0.36",
+"option</em>D": "1.08", "option<em>E": "0.80", "explanation": "0.6(1.2)
++ 0.4(0.90) = 1.08. 9-3", "id": "C9-Q12", "answer": "D", "topic":
+"Portfolio beta", "math": "Yes", "difficulty": "Intermediate",
+"formula</em>type": "Weighted average beta", "source": "Professor
+practice bank: MS short chapters 8 9 18 24", "source<em>page": 5,
+"context": "", "formula</em>id": "F09-05", "correct<em>answer</em>text":
+"1.08"}, {"chapter": 9, "page": 6, "qnum": 13, "question": "A security
+has an expected rate of return of 0.10 and a beta of 1.1. The market
+expected rate of return is 0.08 and the risk-free rate is 0.05. The
+alpha of the stock is", "option<em>A": "1.7%.", "option</em>B":
+"-1.7%.", "option<em>C": "8.3%.", "option</em>D": "5.5%.",
+"option<em>E": "none of the above.", "explanation": "10% - [5% +1.1(8% -
+5%)] = 1.7%.", "id": "C9-Q13", "answer": "A", "topic": "Jensen's alpha",
+"math": "Yes", "difficulty": "Hard", "formula</em>type": "Alpha",
+"source": "Professor practice bank: MS short chapters 8 9 18 24",
+"source<em>page": 6, "context": "", "formula</em>id": "F09-02",
+"correct<em>answer</em>text": "1.7%."}, {"chapter": 9, "page": 6,
+"qnum": 14, "question": "Your opinion is that CSCO has an expected rate
+of return of 0.1375. It has a beta of 1.3. The risk-free rate is 0.04
+and the market expected rate of return is 0.115. According to the
+Capital Asset Pricing Model, this security is", "option<em>A":
+"underpriced.", "option</em>B": "overpriced.", "option<em>C": "fairly
+priced.", "option</em>D": "cannot be determined from data provided.",
+"option<em>E": "none of the above.", "explanation": "13.75% - [4% +
+1.3(11.5% - 4%)] = 0.0%; therefore, the security is fairly priced.",
+"id": "C9-Q14", "answer": "C", "topic": "CAPM mispricing test", "math":
+"Yes", "difficulty": "Hard", "formula</em>type": "CAPM + alpha",
+"source": "Professor practice bank: MS short chapters 8 9 18 24",
+"source<em>page": 6, "context": "", "formula</em>id": "F09-02",
+"correct<em>answer</em>text": "fairly priced."}, {"chapter": 9, "page":
+6, "qnum": 15, "question": "Your opinion is that CSCO has an expected
+rate of return of 0.15. It has a beta of 1.3. The risk-free rate is 0.04
+and the market expected rate of return is 0.115. According to the
+Capital Asset Pricing Model, this security is", "option<em>A":
+"underpriced.", "option</em>B": "overpriced.", "option<em>C": "fairly
+priced.", "option</em>D": "cannot be determined from data provided.",
+"option<em>E": "none of the above.", "explanation": "15% - [4% +
+1.3(11.5% - 4%)] = 1.25%; therefore, the security is under priced.",
+"id": "C9-Q15", "answer": "A", "topic": "CAPM mispricing test", "math":
+"Yes", "difficulty": "Hard", "formula</em>type": "CAPM + alpha",
+"source": "Professor practice bank: MS short chapters 8 9 18 24",
+"source<em>page": 6, "context": "", "formula</em>id": "F09-02",
+"correct<em>answer</em>text": "underpriced."}, {"chapter": 9, "page": 7,
+"qnum": 17, "question": "You invest 55% of your money in security A with
+a beta of 1.4 and the rest of your money in security B with a beta of
+0.9. The beta of the resulting portfolio is", "option<em>A": "1.466",
+"option</em>B": "1.157", "option<em>C": "0.968", "option</em>D":
+"1.082", "option<em>E": "1.175", "explanation": "0.55(1.4) + 0.45(0.90)
+= 1.175.", "id": "C9-Q17", "answer": "E", "topic": "Portfolio beta",
+"math": "Yes", "difficulty": "Intermediate", "formula</em>type":
+"Weighted average beta", "source": "Professor practice bank: MS short
+chapters 8 9 18 24", "source<em>page": 7, "context": "",
+"formula</em>id": "F09-05", "correct<em>answer</em>text": "1.175"},
+{"chapter": 9, "page": 7, "qnum": 18, "question": "What is the expected
+return of a zero-beta security?", "option<em>A": "The market rate of
+return.", "option</em>B": "Zero rate of return.", "option<em>C": "A
+negative rate of return.", "option</em>D": "The risk-free rate.",
+"option<em>E": "None of the above.", "explanation": "E(R ) = r + 0(R -
+r) = r. S f M f f", "id": "C9-Q18", "answer": "D", "topic": "Zero-beta
+security", "math": "Yes", "difficulty": "Intermediate",
+"formula</em>type": "CAPM", "source": "Professor practice bank: MS short
+chapters 8 9 18 24", "source<em>page": 7, "context": "",
+"formula</em>id": "F09-01", "correct<em>answer</em>text": "The risk-free
+rate."}, {"chapter": 9, "page": 7, "qnum": 19, "question": "Standard
+deviation and beta both measure risk, but they are different in that",
+"option<em>A": "beta measures both systematic and unsystematic risk.",
+"option</em>B": "beta measures only systematic risk while standard
+deviation is a measure of total risk.", "option<em>C": "beta measures
+only unsystematic risk while standard deviation is a measure of total
+risk.", "option</em>D": "beta measures both systematic and unsystematic
+risk while standard deviation measures only systematic risk.",
+"option<em>E": "beta measures total risk while standard deviation
+measures only nonsystematic risk.", "explanation": "Standard deviation
+and beta both measure risk, but they are different in that beta measures
+only systematic risk while standard deviation is a measure of total
+risk.", "id": "C9-Q19", "answer": "B", "topic": "Beta vs. total risk",
+"math": "No", "difficulty": "Easy", "formula</em>type": "Risk measures",
+"source": "Professor practice bank: MS short chapters 8 9 18 24",
+"source<em>page": 7, "context": "", "formula</em>id": "Concept only",
+"correct<em>answer</em>text": "beta measures only systematic risk while
+standard deviation is a measure of total risk."}, {"chapter": 9, "page":
+7, "qnum": 20, "question": "The security market line (SML)",
+"option<em>A": "can be portrayed graphically as the expected return-beta
+relationship.", "option</em>B": "can be portrayed graphically as the
+expected return-standard deviation of market returns relationship.",
+"option<em>C": "provides a benchmark for evaluation of investment
+performance.", "option</em>D": "A and C.", "option<em>E": "B and C.",
+"explanation": "The SML is a measure of the expected return-beta
+relationship (the CML is a measure of expected return- standard
+deviation of market returns). The SML provides the expected return-beta
+relationship for \"fairly priced\" securities; thus if a portfolio
+manager selects securities that are underpriced and produces a portfolio
+with a positive alpha, this portfolio manager would receive a positive
+evaluation. 9-5", "id": "C9-Q20", "answer": "D", "topic": "Security
+Market Line (SML)", "math": "No", "difficulty": "Easy",
+"formula</em>type": "SML", "source": "Professor practice bank: MS short
+chapters 8 9 18 24", "source<em>page": 7, "context": "",
+"formula</em>id": "F09-01", "correct<em>answer</em>text": "A and C."},
+{"chapter": 9, "page": 8, "qnum": 23, "question": "An underpriced
+security will plot", "option<em>A": "on the Security Market Line.",
+"option</em>B": "below the Security Market Line.", "option<em>C": "above
+the Security Market Line.", "option</em>D": "either above or below the
+Security Market Line depending on its covariance with the market.",
+"option<em>E": "either above or below the Security Market Line depending
+on its standard deviation.", "explanation": "An underpriced security
+will have a higher expected return than the SML would predict; therefore
+it will plot above the SML.", "id": "C9-Q23", "answer": "C", "topic":
+"SML and underpricing", "math": "No", "difficulty": "Easy",
+"formula</em>type": "SML / alpha", "source": "Professor practice bank:
+MS short chapters 8 9 18 24", "source<em>page": 8, "context": "",
+"formula</em>id": "F09-02", "correct<em>answer</em>text": "above the
+Security Market Line."}, {"chapter": 9, "page": 8, "qnum": 24,
+"question": "An overpriced security will plot", "option<em>A": "on the
+Security Market Line.", "option</em>B": "below the Security Market
+Line.", "option<em>C": "above the Security Market Line.",
+"option</em>D": "either above or below the Security Market Line
+depending on its covariance with the market.", "option<em>E": "either
+above or below the Security Market Line depending on its standard
+deviation.", "explanation": "An overpriced security will have a lower
+expected return than the SML would predict; therefore it will plot below
+the SML.", "id": "C9-Q24", "answer": "B", "topic": "SML and
+overpricing", "math": "No", "difficulty": "Easy", "formula</em>type":
+"SML / alpha", "source": "Professor practice bank: MS short chapters 8 9
+18 24", "source<em>page": 8, "context": "", "formula</em>id": "F09-02",
+"correct<em>answer</em>text": "below the Security Market Line."},
+{"chapter": 9, "page": 8, "qnum": 25, "question": "The capital asset
+pricing model assumes", "option<em>A": "all investors are price
+takers.", "option</em>B": "all investors have the same holding period.",
+"option<em>C": "investors pay taxes on capital gains.", "option</em>D":
+"both A and B are true.", "option<em>E": "A, B and C are all true.",
+"explanation": "The CAPM assumes that investors are price-takers with
+the same single holding period and that there are no taxes or
+transaction costs.", "id": "C9-Q25", "answer": "D", "topic": "CAPM
+assumptions", "math": "No", "difficulty": "Easy", "formula</em>type":
+"CAPM assumptions", "source": "Professor practice bank: MS short
+chapters 8 9 18 24", "source<em>page": 8, "context": "",
+"formula</em>id": "Concept only", "correct<em>answer</em>text": "both A
+and B are true."}, {"chapter": 9, "page": 8, "qnum": 26, "question":
+"The capital asset pricing model assumes", "option<em>A": "all investors
+are price takers.", "option</em>B": "all investors have the same holding
+period.", "option<em>C": "investors have homogeneous expectations.",
+"option</em>D": "both A and B are true.", "option<em>E": "A, B and C are
+all true.", "explanation": "The CAPM assumes that investors are
+price-takers with the same single holding period and that there are no
+taxes or transaction costs. 9-6", "id": "C9-Q26", "answer": "E",
+"topic": "CAPM assumptions", "math": "No", "difficulty": "Easy",
+"formula</em>type": "CAPM assumptions", "source": "Professor practice
+bank: MS short chapters 8 9 18 24", "source<em>page": 8, "context": "",
+"formula</em>id": "Concept only", "correct<em>answer</em>text": "A, B
+and C are all true."}, {"chapter": 9, "page": 9, "qnum": 27, "question":
+"The capital asset pricing model assumes", "option<em>A": "all investors
+are rational.", "option</em>B": "all investors have the same holding
+period.", "option<em>C": "investors have heterogeneous expectations.",
+"option</em>D": "both A and B are true.", "option<em>E": "A, B and C are
+all true.", "explanation": "The CAPM assumes that investors are rational
+price-takers with the same single holding period and that they have
+homogeneous expectations.", "id": "C9-Q27", "answer": "D", "topic":
+"CAPM assumptions", "math": "No", "difficulty": "Easy",
+"formula</em>type": "CAPM assumptions", "source": "Professor practice
+bank: MS short chapters 8 9 18 24", "source<em>page": 9, "context": "",
+"formula</em>id": "Concept only", "correct<em>answer</em>text": "both A
+and B are true."}, {"chapter": 9, "page": 9, "qnum": 28, "question":
+"The capital asset pricing model assumes", "option<em>A": "all investors
+are fully informed.", "option</em>B": "all investors are rational.",
+"option<em>C": "all investors are mean-variance optimizers.",
+"option</em>D": "taxes are an important consideration.", "option<em>E":
+"A, B and C are all true.", "explanation": "The CAPM assumes that
+investors are fully informed, rational, mean-variance optimizers.",
+"id": "C9-Q28", "answer": "E", "topic": "CAPM assumptions", "math":
+"No", "difficulty": "Easy", "formula</em>type": "CAPM assumptions",
+"source": "Professor practice bank: MS short chapters 8 9 18 24",
+"source<em>page": 9, "context": "", "formula</em>id": "Concept only",
+"correct<em>answer</em>text": "A, B and C are all true."}, {"chapter":
+9, "page": 9, "qnum": 29, "question": "The CAPM applies to",
+"option<em>A": "portfolios of securities only.", "option</em>B":
+"individual securities only.", "option<em>C": "efficient portfolios of
+securities only.", "option</em>D": "efficient portfolios and efficient
+individual securities only.", "option<em>E": "all portfolios and
+individual securities.", "explanation": "The CAPM is an equilibrium
+model for all assets. Each asset's risk premium is a function of its
+beta coefficient and the risk premium on the market portfolio.", "id":
+"C9-Q29", "answer": "E", "topic": "CAPM applicability", "math": "No",
+"difficulty": "Easy", "formula</em>type": "CAPM concept", "source":
+"Professor practice bank: MS short chapters 8 9 18 24",
+"source<em>page": 9, "context": "", "formula</em>id": "Concept only",
+"correct<em>answer</em>text": "all portfolios and individual
+securities."}, {"chapter": 9, "page": 9, "qnum": 30, "question": "The
+expected return - beta relationship of the CAPM is graphically
+represented by", "option<em>A": "the security market line.",
+"option</em>B": "the capital market line.", "option<em>C": "the capital
+allocation line.", "option</em>D": "the efficient frontier with a
+risk-free asset.", "option<em>E": "the efficient frontier without a
+risk-free asset.", "explanation": "The security market line shows
+expected return on the vertical axis and beta on the horizontal axis. It
+has an intercept of r and a slope of E(R ) - r. f M f 9-7", "id":
+"C9-Q30", "answer": "A", "topic": "Security Market Line (SML)", "math":
+"No", "difficulty": "Easy", "formula</em>type": "SML", "source":
+"Professor practice bank: MS short chapters 8 9 18 24",
+"source<em>page": 9, "context": "", "formula</em>id": "F09-01",
+"correct<em>answer</em>text": "the security market line."}, {"chapter":
+18, "page": 10, "qnum": 1, "question": "If the expected ROE on
+reinvested earnings is equal to k, the DDM reduces to", "option<em>A":
+"V0= (Expected Dividend Per Share in Year 1)/k", "option</em>B": "V0=
+(Expected EPS in Year 1)/k", "option<em>C": "V0= (Treasury Bond Yield in
+Year 1)/k", "option</em>D": "V0= (Market return in Year 1)/k",
+"option<em>E": "none of the above", "explanation": "If ROE = k, no
+growth is occurring; b = 0; EPS = DPS.", "id": "C18-Q01", "answer": "B",
+"topic": "DDM special case", "math": "No", "difficulty": "Intermediate",
+"formula</em>type": "DDM", "source": "Professor practice bank: MS short
+chapters 8 9 18 24", "source<em>page": 10, "context": "",
+"formula</em>id": "Concept only", "correct<em>answer</em>text": "V0=
+(Expected EPS in Year 1)/k"}, {"chapter": 18, "page": 10, "qnum": 2,
+"question": "The _________ is the fraction of earnings reinvested in the
+firm.", "option<em>A": "dividend payout ratio", "option</em>B":
+"retention rate", "option<em>C": "plowback ratio", "option</em>D": "A
+and C", "option<em>E": "B and C", "explanation": "Retention rate, or
+plowback ratio, represents the earnings reinvested in the firm. The
+retention rate, or (1 - plowback) = dividend payout.", "id": "C18-Q02",
+"answer": "E", "topic": "Retention / plowback ratio", "math": "No",
+"difficulty": "Easy", "formula</em>type": "Growth inputs", "source":
+"Professor practice bank: MS short chapters 8 9 18 24",
+"source<em>page": 10, "context": "", "formula</em>id": "Concept only",
+"correct<em>answer</em>text": "B and C"}, {"chapter": 18, "page": 10,
+"qnum": 3, "question": "Music Doctors Company has an expected ROE of
+14%. The dividend growth rate will be ________ if the firm follows a
+policy of paying 60% of earnings in the form of dividends.",
+"option<em>A": "4.8%", "option</em>B": "5.6%", "option<em>C": "7.2%",
+"option</em>D": "6.0%", "option<em>E": "none of the above",
+"explanation": "14% X 0.40 = 5.6%.", "id": "C18-Q03", "answer": "B",
+"topic": "Sustainable dividend growth", "math": "Yes", "difficulty":
+"Intermediate", "formula</em>type": "g = b × ROE", "source": "Professor
+practice bank: MS short chapters 8 9 18 24", "source<em>page": 10,
+"context": "", "formula</em>id": "F18-05", "correct<em>answer</em>text":
+"5.6%"}, {"chapter": 18, "page": 10, "qnum": 4, "question": "You wish to
+earn a return of 13% on each of two stocks, X and Y. Stock X is expected
+to pay a dividend of $3 in the upcoming year while Stock Y is expected
+to pay a dividend of $4 in the upcoming year. The expected growth rate
+of dividends for both stocks is 7%. The intrinsic value of stock X
+______.", "option<em>A": "will be greater than the intrinsic value of
+stock Y", "option</em>B": "will be the same as the intrinsic value of
+stock Y", "option<em>C": "will be less than the intrinsic value of stock
+Y", "option</em>D": "A or B", "option<em>E": "none of the above is a
+correct answer.", "explanation": "PV = D1/(k-g); given k and g are
+equal, the stock with the larger dividend will have the higher value.
+0", "id": "C18-Q04", "answer": "C", "topic": "Gordon growth DDM",
+"math": "Yes", "difficulty": "Intermediate", "formula</em>type": "Gordon
+DDM", "source": "Professor practice bank: MS short chapters 8 9 18 24",
+"source<em>page": 10, "context": "", "formula</em>id": "F18-03",
+"correct<em>answer</em>text": "will be less than the intrinsic value of
+stock Y"}, {"chapter": 18, "page": 11, "qnum": 5, "question": "Each of
+two stocks, A and B, are expected to pay a dividend of $5 in the
+upcoming year. The expected growth rate of dividends is 10% for both
+stocks. You require a rate of return (i.e., discount rate) of 11% on
+stock A and a return of 20% on stock B. The intrinsic value of stock A
+_____.", "option<em>A": "will be greater than the intrinsic value of
+stock B", "option</em>B": "will be the same as the intrinsic value of
+stock B", "option<em>C": "will be less than the intrinsic value of stock
+B", "option</em>D": "cannot be calculated without knowing the market
+rate of return", "option<em>E": "none of the above is true.",
+"explanation": "PV = D1/(k-g); given that dividends are equal, the stock
+with the larger required return will have the lower 0 value.", "id":
+"C18-Q05", "answer": "A", "topic": "Gordon growth DDM", "math": "Yes",
+"difficulty": "Intermediate", "formula</em>type": "Gordon DDM",
+"source": "Professor practice bank: MS short chapters 8 9 18 24",
+"source<em>page": 11, "context": "", "formula</em>id": "F18-03",
+"correct<em>answer</em>text": "will be greater than the intrinsic value
+of stock B"}, {"chapter": 18, "page": 11, "qnum": 6, "question":
+"Medtronic Company has an expected ROE of 16%. The dividend growth rate
+will be ________ if the firm follows a policy of paying 70% of earnings
+in the form of dividends.", "option<em>A": "3.0%", "option</em>B":
+"6.0%", "option<em>C": "7.2%", "option</em>D": "4.8%", "option<em>E":
+"none of the above", "explanation": "16% X 0.30 = 4.8%.", "id":
+"C18-Q06", "answer": "D", "topic": "Sustainable dividend growth",
+"math": "Yes", "difficulty": "Intermediate", "formula</em>type": "g = b
+× ROE", "source": "Professor practice bank: MS short chapters 8 9 18
+24", "source<em>page": 11, "context": "", "formula</em>id": "F18-05",
+"correct<em>answer</em>text": "4.8%"}, {"chapter": 18, "page": 11,
+"qnum": 7, "question": "A preferred stock will pay a dividend of $2.75
+in the upcoming year, and every year thereafter, i.e., dividends are not
+expected to grow. You require a return of 10% on this stock. Use the
+constant growth DDM to calculate the intrinsic value of this preferred
+stock.", "option<em>A": "$0.275", "option</em>B": "$27.50",
+"option<em>C": "$31.82", "option</em>D": "$56.25", "option<em>E": "none
+of the above", "explanation": "2.75 / 0.10 = 27.50", "id": "C18-Q07",
+"answer": "B", "topic": "Zero-growth DDM / perpetuity", "math": "Yes",
+"difficulty": "Intermediate", "formula</em>type": "Perpetuity",
+"source": "Professor practice bank: MS short chapters 8 9 18 24",
+"source<em>page": 11, "context": "", "formula</em>id": "F18-04",
+"correct<em>answer</em>text": "$27.50"}, {"chapter": 18, "page": 11,
+"qnum": 8, "question": "You are considering acquiring a common stock
+that you would like to hold for one year. You expect to receive both
+$1.25 in dividends and $32 from the sale of the stock at the end of the
+year. The maximum price you would pay for the stock today is _____ if
+you wanted to earn a 10% return.", "option<em>A": "$30.23",
+"option</em>B": "$24.11", "option<em>C": "$26.52", "option</em>D":
+"$27.50", "option<em>E": "none of the above", "explanation": "0.10 = (32
+- P + 1.25) / P; 0.10P = 32 - P + 1.25; 1.10P = 33.25; P = 30.23.",
+"id": "C18-Q08", "answer": "A", "topic": "One-period stock valuation",
+"math": "Yes", "difficulty": "Intermediate", "formula</em>type":
+"One-period PV", "source": "Professor practice bank: MS short chapters 8
+9 18 24", "source<em>page": 11, "context": "", "formula</em>id":
+"F18-01", "correct<em>answer</em>text": "$30.23"}, {"chapter": 18,
+"page": 12, "qnum": 9, "question": "The market's required rate of return
+on Sure's stock is _____.", "option<em>A": "14.0%", "option</em>B":
+"17.5%", "option<em>C": "16.5%", "option</em>D": "15.25%",
+"option<em>E": "none of the above", "explanation": "The market's
+required rate of return is a different way of saying, the return
+predicted by the CAPM. This predicted return is a good measure of a
+firm’s discount rate. In this case, the discount rate obtained by the
+CAPM is: Rf + b(Rm – Rf) = 4% + 1.25(14% - 4%) = 16.5%.", "id":
+"C18-Q09", "answer": "C", "topic": "CAPM discount rate", "math": "Yes",
+"difficulty": "Intermediate", "formula</em>type": "CAPM + DDM",
+"source": "Professor practice bank: MS short chapters 8 9 18 24",
+"source<em>page": 12, "context": "Shared data for Q9–Q11: Sure Tool
+expects D1 = $2; rf = 4%; E(rM) = 14%; expected P1 = $22; beta = 1.25.",
+"formula</em>id": "F09-01", "correct<em>answer</em>text": "16.5%"},
+{"chapter": 18, "page": 12, "qnum": 10, "question": "What is the
+intrinsic value of Sure's stock today?", "option<em>A": "$20.60",
+"option</em>B": "$20.00", "option<em>C": "$12.12", "option</em>D":
+"$22.00", "option<em>E": "none of the above", "explanation": "k = .04 +
+1.25 (0.14 - 0.04); k = 0.165; We know that in a well-functioning market
+the discount rate will be equal to the observed return. Therefore, k = r
+= (P1 – P0 + D1)/P0 = 0.165 = (22 – P0 + 2) / P0; 0.165P0 = 24 – P0;
+1.165P0 = 24; P0 = 20.60.", "id": "C18-Q10", "answer": "A", "topic":
+"Intrinsic value: one-period model", "math": "Yes", "difficulty":
+"Hard", "formula</em>type": "CAPM + PV", "source": "Professor practice
+bank: MS short chapters 8 9 18 24", "source<em>page": 12, "context":
+"Shared data for Q9–Q11: Sure Tool expects D1 = $2; rf = 4%; E(rM) =
+14%; expected P1 = $22; beta = 1.25.", "formula</em>id": "F18-01",
+"correct<em>answer</em>text": "$20.60"}, {"chapter": 18, "page": 12,
+"qnum": 11, "question": "If Sure's intrinsic value is $21.00 today, what
+must be its growth rate?", "option<em>A": "0.0%", "option</em>B": "10%",
+"option<em>C": "4%", "option</em>D": "6%", "option<em>E": "7%",
+"explanation": "k = .04 + 1.25 (.14 - .04); k = .165; Note that: P0 = D1
+/ (k – g), solve for k: k – g = D1/P0 è k = D1/P0 + g We know that the
+DDM implies that k = D1/P0 + g. Therefore, 0.165 = 2/21 + g; g = 0.07",
+"id": "C18-Q11", "answer": "E", "topic": "Implied growth rate", "math":
+"Yes", "difficulty": "Hard", "formula</em>type": "Gordon DDM
+rearrangement", "source": "Professor practice bank: MS short chapters 8
+9 18 24", "source<em>page": 12, "context": "Shared data for Q9–Q11: Sure
+Tool expects D1 = $2; rf = 4%; E(rM) = 14%; expected P1 = $22; beta =
+1.25.", "formula</em>id": "F18-04", "correct<em>answer</em>text": "7%"},
+{"chapter": 18, "page": 13, "qnum": 12, "question": "High Tech Chip
+Company is expected to have EPS in the coming year of $2.50. The
+expected ROE is 12.5%. An appropriate required return on the stock is
+11%. If the firm has a plowback ratio of 70%, the growth rate of
+dividends should be", "option<em>A": "5.00%", "option</em>B": "6.25%",
+"option<em>C": "6.60%", "option</em>D": "7.50%", "option<em>E": "8.75%",
+"explanation": "g = b x ROE è 12.5% X 0.7 = 8.75%.", "id": "C18-Q12",
+"answer": "E", "topic": "Sustainable dividend growth", "math": "Yes",
+"difficulty": "Intermediate", "formula</em>type": "g = b × ROE",
+"source": "Professor practice bank: MS short chapters 8 9 18 24",
+"source<em>page": 13, "context": "", "formula</em>id": "F18-05",
+"correct<em>answer</em>text": "8.75%"}, {"chapter": 18, "page": 13,
+"qnum": 13, "question": "Low Tech Chip Company is expected to have EPS
+of $2.50 in the coming year. The expected ROE is 14%. An appropriate
+required return on the stock is 11%. If the firm has a dividend payout
+ratio of 40%, the intrinsic value of the stock should be",
+"option<em>A": "$22.73", "option</em>B": "$27.50", "option<em>C":
+"$28.57", "option</em>D": "$38.46", "option<em>E": "none of the above",
+"explanation": "P = D1 / ( r - g ) g = ROE x b = 14% x 0.6 = 8.4%;
+Expected DPS = $2.50(0.4) = $1.00; P = D1/(r - g ) = 1 / (0.11 - 0.084)
+= $38.46.", "id": "C18-Q13", "answer": "D", "topic": "DDM with
+reinvestment", "math": "Yes", "difficulty": "Hard", "formula</em>type":
+"DDM + growth", "source": "Professor practice bank: MS short chapters 8
+9 18 24", "source<em>page": 13, "context": "", "formula</em>id":
+"F18-07", "correct<em>answer</em>text": "$38.46"}, {"chapter": 18,
+"page": 13, "qnum": 14, "question": "The market capitalization rate on
+the stock of Flexsteel Company is 12%. The expected ROE is 13% and the
+expected EPS are $3.60. If the firm's plowback ratio is 50%, the P/E
+ratio will be _________.", "option<em>A": "7.69", "option</em>B":
+"8.33", "option<em>C": "9.09", "option</em>D": "11.11", "option<em>E":
+"none of the above", "explanation": "g = 13% X 0.5 = 6.5%; P0/E = (1 -
+b)/(r – g) = 0.5/(0.12-0.065) = 9.09", "id": "C18-Q14", "answer": "C",
+"topic": "Forward P/E ratio", "math": "Yes", "difficulty": "Hard",
+"formula</em>type": "P/E", "source": "Professor practice bank: MS short
+chapters 8 9 18 24", "source<em>page": 13, "context": "",
+"formula</em>id": "F18-10", "correct<em>answer</em>text": "9.09"},
+{"chapter": 18, "page": 14, "qnum": 15, "question": "If a firm has a
+required rate of return equal to the ROE", "option<em>A": "the firm can
+increase market price and P/E by retaining more earnings.",
+"option</em>B": "the firm can increase market price and P/E by
+increasing the growth rate.", "option<em>C": "the amount of earnings
+retained by the firm does not affect market price or the P/E.",
+"option</em>D": "A and B.", "option<em>E": "none of the above.",
+"explanation": "If required return and ROE are equal, investors are
+indifferent as to whether the firm retains more earnings or increases
+dividends. Thus, retention rates and growth rates do not affect market
+price and P/E. Also recall that when k or r = ROE, then V0 = P0 = E1/ROE
+è PE = 1/ROE.", "id": "C18-Q15", "answer": "C", "topic": "ROE vs.
+required return", "math": "Yes", "difficulty": "Intermediate",
+"formula</em>type": "Growth decision", "source": "Professor practice
+bank: MS short chapters 8 9 18 24", "source<em>page": 14, "context": "",
+"formula</em>id": "F18-08", "correct<em>answer</em>text": "the amount of
+earnings retained by the firm does not affect market price or the
+P/E."}, {"chapter": 18, "page": 14, "qnum": 16, "question": "Investors
+want high plowback ratios", "option<em>A": "for all firms.",
+"option</em>B": "whenever ROE &gt; k.", "option<em>C": "whenever k &gt;
+ROE.", "option</em>D": "only when they are in low tax brackets.",
+"option<em>E": "whenever bank interest rates are high.", "explanation":
+"Investors prefer that firms reinvest earnings when ROE exceeds k.",
+"id": "C18-Q16", "answer": "B", "topic": "Reinvestment decision / PVGO",
+"math": "No", "difficulty": "Easy", "formula</em>type": "PVGO",
+"source": "Professor practice bank: MS short chapters 8 9 18 24",
+"source<em>page": 14, "context": "", "formula</em>id": "F18-09",
+"correct<em>answer</em>text": "whenever ROE &gt; k."}, {"chapter": 18,
+"page": 14, "qnum": 17, "question": "Dividend discount models and P/E
+ratios are used by __________ to try to find mispriced securities.",
+"option<em>A": "technical analysts", "option</em>B": "statistical
+analysts", "option<em>C": "fundamental analysts", "option</em>D":
+"dividend analysts", "option<em>E": "psychoanalysts", "explanation":
+"Fundamental analysts look at the basic features of the firm to estimate
+firm value.", "id": "C18-Q17", "answer": "C", "topic": "Fundamental
+analysis", "math": "No", "difficulty": "Easy", "formula</em>type":
+"Concept", "source": "Professor practice bank: MS short chapters 8 9 18
+24", "source<em>page": 14, "context": "", "formula</em>id": "Concept
+only", "correct<em>answer</em>text": "fundamental analysts"},
+{"chapter": 18, "page": 14, "qnum": 18, "question": "Within the DDM, low
+P/E ratios tend to indicate that a company will _______, ceteris
+paribus.", "option<em>A": "grow quickly", "option</em>B": "grow at the
+same speed as the average company", "option<em>C": "grow slowly",
+"option</em>D": "P/E ratios are unrelated to growth", "option<em>E":
+"none of the above", "explanation": "In theory, Investors pay for
+growth; hence a relatively high P/E ratio for growth firms. P = D1 / ( r
+– g) P = (1 – b)E1 / ( r – b x ROE) P/E1 = (1 – b) / ( r – b x ROE)",
+"id": "C18-Q18", "answer": "C", "topic": "P/E and growth", "math": "No",
+"difficulty": "Easy", "formula</em>type": "P/E", "source": "Professor
+practice bank: MS short chapters 8 9 18 24", "source<em>page": 14,
+"context": "", "formula</em>id": "F18-10", "correct<em>answer</em>text":
+"grow slowly"}, {"chapter": 24, "page": 15, "qnum": 1, "question":
+"Suppose two portfolios have the same average return, the same standard
+deviation of returns, but portfolio A has a higher beta than portfolio
+B. According to the Treynor measure, the performance of portfolio A
+__________.", "option<em>A": "is better than the performance of
+portfolio B", "option</em>B": "is the same as the performance of
+portfolio B", "option<em>C": "is poorer than the performance of
+portfolio B", "option</em>D": "cannot be measured as there is no data on
+the alpha of the portfolio", "option<em>E": "none of the above is
+true.", "explanation": "The Treynor index is a measure of average
+portfolio returns (in excess of the risk-free return) per unit of
+systematic risk (as measured by beta).", "id": "C24-Q01", "answer": "C",
+"topic": "Treynor measure", "math": "No", "difficulty": "Easy",
+"formula</em>type": "Treynor", "source": "Professor practice bank: MS
+short chapters 8 9 18 24", "source<em>page": 15, "context": "",
+"formula</em>id": "F24-02", "correct<em>answer</em>text": "is poorer
+than the performance of portfolio B"}, {"chapter": 24, "page": 15,
+"qnum": 2, "question": "Suppose two portfolios have the same average
+return, the same standard deviation of returns, but Aggie Fund has a
+higher beta than Raider Fund. According to the Sharpe measure, the
+performance of Aggie Fund", "option<em>A": "is better than the
+performance of Raider Fund.", "option</em>B": "is the same as the
+performance of Raider Fund.", "option<em>C": "is poorer than the
+performance of Raider Fund.", "option</em>D": "cannot be measured as
+there is no data on the alpha of the portfolio.", "option<em>E": "none
+of the above is true.", "explanation": "The Sharpe index is a measure of
+average portfolio returns (in excess of the risk-free return) per unit
+of total risk (as measured by standard deviation).", "id": "C24-Q02",
+"answer": "B", "topic": "Sharpe ratio", "math": "No", "difficulty":
+"Easy", "formula</em>type": "Sharpe", "source": "Professor practice
+bank: MS short chapters 8 9 18 24", "source<em>page": 15, "context": "",
+"formula</em>id": "F24-01", "correct<em>answer</em>text": "is the same
+as the performance of Raider Fund."}, {"chapter": 24, "page": 15,
+"qnum": 3, "question": "Suppose the risk-free return is 3%. The beta of
+a managed portfolio is 1.75, the alpha is 0%, and the average return is
+16%. Based on Jensen's measure of portfolio performance, you would
+calculate the return on the market portfolio as", "option<em>A":
+"12.3%", "option</em>B": "10.4%", "option<em>C": "15.1%",
+"option</em>D": "16.7%", "option<em>E": "none of the above",
+"explanation": "0% = 16% - [3% + 1.75(x - 3%)]; 0 = 16 - [3 + 1.75x -
+5.25]; 0 = 16 - [1.75x - 2.25]; 0 = 18.25 - 1.75x; x = 10.43%.", "id":
+"C24-Q03", "answer": "B", "topic": "Jensen's alpha", "math": "Yes",
+"difficulty": "Hard", "formula</em>type": "Alpha", "source": "Professor
+practice bank: MS short chapters 8 9 18 24", "source<em>page": 15,
+"context": "", "formula</em>id": "F09-02", "correct<em>answer</em>text":
+"10.4%"}, {"chapter": 24, "page": 16, "qnum": 4, "question": "You want
+to evaluate three mutual funds using the Sharpe measure for performance
+evaluation. The risk-free return during the sample period is 6%. The
+average returns, standard deviations and betas for the three funds are
+given below, as is the data for the S&amp;P 500 index. The fund with the
+highest Sharpe measure is __________.", "option<em>A": "Fund A",
+"option</em>B": "Fund B", "option<em>C": "Fund C", "option</em>D":
+"Funds A and B are tied for highest", "option<em>E": "Funds A and C are
+tied for highest", "explanation": "A: (24% - 6%)/30% = 0.60; B: (12% -
+6%)/10% = 0.60; C: (22% - 6%)/20% = 0.80; S&amp;P 500: (18% - 6%)/16% =
+0.75.", "id": "C24-Q04", "answer": "C", "topic": "Sharpe ratio", "math":
+"Yes", "difficulty": "Intermediate", "formula</em>type": "Sharpe",
+"source": "Professor practice bank: MS short chapters 8 9 18 24",
+"source<em>page": 16, "context": "Data: Fund A return 24%, SD 30%, beta
+1.5; Fund B 12%, 10%, 0.5; Fund C 22%, 20%, 1.0; S&amp;P 500 18%, 16%,
+1.0. rf = 6%.", "formula</em>id": "F24-01",
+"correct<em>answer</em>text": "Fund C"}, {"chapter": 24, "page": 16,
+"qnum": 5, "question": "You want to evaluate three mutual funds using
+the Treynor measure for performance evaluation. The risk-free return
+during the sample period is 6%. The average returns, standard
+deviations, and betas for the three funds are given below, in addition
+to information regarding the S&amp;P 500 index. The fund with the
+highest Treynor measure is __________.", "option<em>A": "Fund A",
+"option</em>B": "Fund B", "option<em>C": "Fund C", "option</em>D":
+"Funds A and B are tied for highest", "option<em>E": "Funds A and C are
+tied for highest", "explanation": "A: (13% - 6%)/0.5 = 14%; B: (19% -
+6%)/1.0 = 13%; C: (25% - 6%)/1.5 = 12.7%; S&amp;P 500: (18% - 6%)/1.0 =
+%12.", "id": "C24-Q05", "answer": "A", "topic": "Treynor measure",
+"math": "Yes", "difficulty": "Intermediate", "formula</em>type":
+"Treynor", "source": "Professor practice bank: MS short chapters 8 9 18
+24", "source<em>page": 16, "context": "Data: Fund A return 13%, SD 10%,
+beta 0.5; Fund B 19%, 20%, 1.0; Fund C 25%, 30%, 1.5; S&amp;P 500 18%,
+16%, 1.0. rf = 6%.", "formula</em>id": "F24-02",
+"correct<em>answer</em>text": "Fund A"}, {"chapter": 24, "page": 17,
+"qnum": 6, "question": "You want to evaluate three mutual funds using
+the Jensen measure for performance evaluation. The risk- free return
+during the sample period is 6%, and the average return on the market
+portfolio is 18%. The average returns, standard deviations, and betas
+for the three funds are given below. The fund with the highest Jensen
+measure is __________.", "option<em>A": "Fund A", "option</em>B": "Fund
+B", "option<em>C": "Fund C", "option</em>D": "Funds A and B are tied for
+highest", "option<em>E": "Funds A and C are tied for highest",
+"explanation": "A: 17.6% - [6% + 1.2(18% - 6%)] = - 0.4%; B: 17.5% - [6%
++ 1.0(18% - 6%)] = - 0.5%; C: 17.4% - [6% + 0.8(18% - 6%)] = + 1.8%.",
+"id": "C24-Q06", "answer": "C", "topic": "Jensen's alpha", "math":
+"Yes", "difficulty": "Hard", "formula</em>type": "Alpha", "source":
+"Professor practice bank: MS short chapters 8 9 18 24",
+"source<em>page": 17, "context": "Data: Fund A return 17.6%, SD 10%,
+beta 1.2; Fund B 17.5%, 20%, 1.0; Fund C 17.4%, 30%, 0.8. Market return
+= 18%; rf = 6%.", "formula</em>id": "F09-02",
+"correct<em>answer</em>text": "Fund C"}, {"chapter": 24, "page": 17,
+"qnum": 7, "question": "The following data are available relating to the
+performance of Sooner Stock Fund and the market portfolio: The risk-free
+return during the sample period was 3%. Calculate the information ratio
+for Sooner Stock Fund.", "option<em>A": "1.53", "option</em>B": "1.30",
+"option<em>C": "8.67", "option</em>D": "31.43", "option<em>E": "37.14",
+"explanation": "a = 20% - [3% + 1.8(11% - 3%)] = 2.6%, P 2.6% / 2.00% =
+1.3.", "id": "C24-Q07", "answer": "B", "topic": "Information ratio",
+"math": "Yes", "difficulty": "Hard", "formula</em>type": "Information
+ratio", "source": "Professor practice bank: MS short chapters 8 9 18
+24", "source<em>page": 17, "context": "Data: Sooner Fund return 20%, SD
+44%, beta 1.8, residual SD 2.0%; Market return 11%, SD 19%, beta 1.0. rf
+= 3%.", "formula</em>id": "F24-04", "correct<em>answer</em>text":
+"1.30"}, {"chapter": 24, "page": 18, "qnum": 8, "question": "If you
+wanted to evaluate the Seminole Fund using the M² measure, what percent
+of the adjusted (hypothetical) portfolio would need to be invested in
+T-Bills?", "option<em>A": "-36% (borrow)", "option</em>B": "50%",
+"option<em>C": "8%", "option</em>D": "36%", "option<em>E": "27%",
+"explanation": "22/30 = .7333 or 73.33% invested in Seminole Fund and 1-
+73.33% = 26.67% in T-Bill.", "id": "C24-Q08", "answer": "E", "topic":
+"M² risk matching weights", "math": "Yes", "difficulty": "Intermediate",
+"formula</em>type": "M²", "source": "Professor practice bank: MS short
+chapters 8 9 18 24", "source<em>page": 18, "context": "Shared data for
+Q8–Q9: Seminole return 18%, SD 30%, beta 1.4, residual SD 4.0%; Market
+return 14%, SD 22%, beta 1.0. rf = 6%.", "formula</em>id": "F24-08",
+"correct<em>answer</em>text": "27%"}, {"chapter": 24, "page": 18,
+"qnum": 9, "question": "Calculate the M² measure for the Seminole
+Fund.", "option<em>A": "4.0%", "option</em>B": "20.0%", "option<em>C":
+"2.86%", "option</em>D": "0.8%", "option<em>E": "40.0%", "explanation":
+"22/30 = .7333; 1 - .7333 = .2667; M2 = [.7333 (18) + .2667 (6)] - 14 =
+0.8%.", "id": "C24-Q09", "answer": "D", "topic": "M² performance
+measure", "math": "Yes", "difficulty": "Hard", "formula</em>type": "M²",
+"source": "Professor practice bank: MS short chapters 8 9 18 24",
+"source<em>page": 18, "context": "Shared data for Q8–Q9: Seminole return
+18%, SD 30%, beta 1.4, residual SD 4.0%; Market return 14%, SD 22%, beta
+1.0. rf = 6%.", "formula</em>id": "F24-09",
+"correct<em>answer</em>text": "0.8%"}, {"chapter": 24, "page": 18,
+"qnum": 10, "question": "The Sharpe, Treynor, and Jensen alpha are all
+performance evaluation measures,", "option<em>A": "therefore, it does
+not matter which measure is used to evaluate a portfolio manager.",
+"option</em>B": "however, the Sharpe and Treynor measures use different
+risk measures, and therefore they vary as to whether or not they are
+appropriate, depending on the investment scenario.", "option<em>C": "and
+all measures have the same attributes.", "option</em>D": "A and B.",
+"option<em>E": "none of the above.", "explanation": "The Sharpe measure
+uses standard deviation, or total risk, as the risk measure; the Treynor
+measure uses beta, or systematic risk, as the risk measure.", "id":
+"C24-Q10", "answer": "B", "topic": "Choosing a performance measure",
+"math": "No", "difficulty": "Easy", "formula</em>type": "Measure
+selection", "source": "Professor practice bank: MS short chapters 8 9 18
+24", "source<em>page": 18, "context": "", "formula</em>id": "F24-01 /
+F24-02 / F24-04", "correct<em>answer</em>text": "however, the Sharpe and
+Treynor measures use different risk measures, and therefore they vary as
+to whether or not they are appropriate, depending on the investment
+scenario."}, {"chapter": 24, "page": 19, "qnum": 11, "question": "The
+Modigliani M² measure and the Treynor T² measure", "option<em>A": "are
+identical.", "option</em>B": "are nearly identical and will rank
+portfolios the same way.", "option<em>C": "are similar but might rank
+portfolios differently.", "option</em>D": "are somewhat different; M2
+can be used to rank portfolios but T2 cannot.", "option<em>E": "are
+somewhat different; T2 can be used to rank portfolios but M2 cannot.",
+"explanation": "Both measures are similar telling us the excess return
+of a hypothetical portfolio that has the same risk as the market. M2 is
+using total risk, T2 is using market risk measured by the beta. Both can
+be used to rank portfolios in terms of performance relative to risk. But
+the measures might give different rankings because they are based on
+different types of risk. 12-15. The following data are available
+relating to the performance of Long Horn Stock Fund and the market
+portfolio: The risk-free return during the sample period was 6%.", "id":
+"C24-Q11", "answer": "C", "topic": "M² vs. T²", "math": "No",
+"difficulty": "Easy", "formula</em>type": "M² / T²", "source":
+"Professor practice bank: MS short chapters 8 9 18 24",
+"source<em>page": 19, "context": "", "formula</em>id": "F24-09 /
+F24-11", "correct<em>answer</em>text": "are similar but might rank
+portfolios differently."}, {"chapter": 24, "page": 19, "qnum": 12,
+"question": "What is the Sharpe measure of performance evaluation for
+Long Horn Stock Fund?", "option<em>A": "1.33%", "option</em>B": "4.00%",
+"option<em>C": "8.67%", "option</em>D": "31.43%", "option<em>E":
+"37.14%", "explanation": "(19% - 6%)/35% = 0.3714, or 37.14%.", "id":
+"C24-Q12", "answer": "E", "topic": "Sharpe ratio", "math": "Yes",
+"difficulty": "Intermediate", "formula</em>type": "Sharpe", "source":
+"Professor practice bank: MS short chapters 8 9 18 24",
+"source<em>page": 19, "context": "Shared data for Q12–Q15: Long Horn
+return 19%, SD 35%, beta 1.5, residual SD 3.0%; Market return 12%, SD
+15%, beta 1.0. rf = 6%.", "formula</em>id": "F24-01",
+"correct<em>answer</em>text": "37.14%"}, {"chapter": 24, "page": 19,
+"qnum": 13, "question": "What is the Treynor measure of performance
+evaluation for Long Horn Stock Fund?", "option<em>A": "1.33%",
+"option</em>B": "4.00%", "option<em>C": "8.67%", "option</em>D":
+"31.43%", "option<em>E": "37.14%", "explanation": "(19% - 6%)/1.5 =
+8.67%.", "id": "C24-Q13", "answer": "C", "topic": "Treynor measure",
+"math": "Yes", "difficulty": "Intermediate", "formula</em>type":
+"Treynor", "source": "Professor practice bank: MS short chapters 8 9 18
+24", "source<em>page": 19, "context": "Shared data for Q12–Q15: Long
+Horn return 19%, SD 35%, beta 1.5, residual SD 3.0%; Market return 12%,
+SD 15%, beta 1.0. rf = 6%.", "formula</em>id": "F24-02",
+"correct<em>answer</em>text": "8.67%"}, {"chapter": 24, "page": 20,
+"qnum": 14, "question": "Calculate the Jensen measure of performance
+evaluation for Long Horn Stock Fund.", "option<em>A": "1.33%",
+"option</em>B": "4.00%", "option<em>C": "8.67%", "option</em>D":
+"31.43%", "option<em>E": "37.14%", "explanation": "a = 19% - [6% +
+1.5(12% - 6%)] = 4.00%. P", "id": "C24-Q14", "answer": "B", "topic":
+"Jensen's alpha", "math": "Yes", "difficulty": "Hard",
+"formula</em>type": "Alpha", "source": "Professor practice bank: MS
+short chapters 8 9 18 24", "source<em>page": 20, "context": "Shared data
+for Q12–Q15: Long Horn return 19%, SD 35%, beta 1.5, residual SD 3.0%;
+Market return 12%, SD 15%, beta 1.0. rf = 6%.", "formula</em>id":
+"F09-02", "correct<em>answer</em>text": "4.00%"}, {"chapter": 24,
+"page": 20, "qnum": 15, "question": "Calculate the information ratio for
+Long Horn Stock Fund.", "option<em>A": "1.33", "option</em>B": "4.00",
+"option<em>C": "8.67", "option</em>D": "31.43", "option<em>E": "37.14",
+"explanation": "a = 19% - [6% + 1.5(12% - 6%)] = 4.00% P 4.00% / 3.00% =
+1.33. The following data are available relating to the performance of
+Seminole Fund and the market portfolio: The risk-free return during the
+sample period was 6%.", "id": "C24-Q15", "answer": "A", "topic":
+"Information ratio", "math": "Yes", "difficulty": "Hard",
+"formula</em>type": "Information ratio", "source": "Professor practice
+bank: MS short chapters 8 9 18 24", "source<em>page": 20, "context":
+"Shared data for Q12–Q15: Long Horn return 19%, SD 35%, beta 1.5,
+residual SD 3.0%; Market return 12%, SD 15%, beta 1.0. rf = 6%.",
+"formula</em>id": "F24-04", "correct<em>answer</em>text": "1.33"},
+{"chapter": 24, "page": 20, "qnum": 16, "question": "If you wanted to
+evaluate the Seminole Fund using the M² measure, what percent of the
+adjusted (hypothetical) portfolio would need to be invested in
+T-Bills?", "option<em>A": "-36% (borrow)", "option</em>B": "50%",
+"option<em>C": "8%", "option</em>D": "36%", "option<em>E": "27%",
+"explanation": "22/30 = 0.7333 or 73.33% invested in Seminole Fund and
+100 - 73.33% = 26.67% in T-Bills", "id": "C24-Q16", "answer": "E",
+"topic": "M² risk matching weights", "math": "Yes", "difficulty":
+"Hard", "formula</em>type": "M²", "source": "Professor practice bank: MS
+short chapters 8 9 18 24", "source<em>page": 20, "context": "Shared
+Seminole data: return 18%, SD 30%, beta 1.4; Market return 14%, SD 22%,
+beta 1.0. rf = 6%.", "formula</em>id": "F24-08",
+"correct<em>answer</em>text": "27%"}, {"chapter": 24, "page": 21,
+"qnum": 17, "question": "Calculate the M² measure for the Seminole
+Fund.", "option<em>A": "4.0%", "option</em>B": "20.0%", "option<em>C":
+"2.86%", "option</em>D": "0.8%", "option<em>E": "40.0%", "explanation":
+"22/30 = .7333; 1 - .7333 = .2667; M2 = [.7333 (18) + .2667 (6)] - 14 =
+0.8%.", "id": "C24-Q17", "answer": "D", "topic": "M² performance
+measure", "math": "Yes", "difficulty": "Hard", "formula</em>type": "M²",
+"source": "Professor practice bank: MS short chapters 8 9 18 24",
+"source<em>page": 21, "context": "Shared Seminole data: return 18%, SD
+30%, beta 1.4; Market return 14%, SD 22%, beta 1.0. rf = 6%.",
+"formula</em>id": "F24-09", "correct<em>answer</em>text": "0.8%"},
+{"chapter": 24, "page": 21, "qnum": 18, "question": "If you wanted to
+evaluate the Seminole Fund using the T² measure, what percent of the
+adjusted (hypothetical) portfolio would need to be invested in
+T-Bills?", "option<em>A": "-12% (borrow)", "option</em>B": "45%",
+"option<em>C": "82%", "option</em>D": "27%", "option<em>E": "30%",
+"explanation": "(1.4 – 1)/1.4 = 0.2857 or 28.57% invested in T-Bills and
+100 – 28.57 = 71.43% in the Seminole Fund", "id": "C24-Q18", "answer":
+"E", "topic": "T² risk matching weights", "math": "Yes", "difficulty":
+"Hard", "formula</em>type": "T²", "source": "Professor practice bank: MS
+short chapters 8 9 18 24", "source<em>page": 21, "context": "Shared
+Seminole data: return 18%, SD 30%, beta 1.4; Market return 14%, SD 22%,
+beta 1.0. rf = 6%.", "formula</em>id": "F24-10",
+"correct<em>answer</em>text": "30%"}, {"chapter": 24, "page": 21,
+"qnum": 19, "question": "Calculate the T² measure for the Seminole
+Fund.", "option<em>A": "5.0%", "option</em>B": "0.57%", "option<em>C":
+"3.9%", "option</em>D": "1.8%", "option<em>E": "34.0%", "explanation":
+"(1.4 – 1)/1.4 = 0.2857; 1 - 0.2857= 0.7143; T2 = [ 0.7143 (18) + 0.2857
+(6)] - 14 = 14.57 – 14 = 0.57%.", "id": "C24-Q19", "answer": "B",
+"topic": "T² performance measure", "math": "Yes", "difficulty": "Hard",
+"formula</em>type": "T²", "source": "Professor practice bank: MS short
+chapters 8 9 18 24", "source<em>page": 21, "context": "Shared Seminole
+data: return 18%, SD 30%, beta 1.4; Market return 14%, SD 22%, beta 1.0.
+rf = 6%.", "formula</em>id": "F24-11", "correct<em>answer</em>text":
+"0.57%"}]; const FORMULAS=[{"id": "P-01", "scope": "Prerequisite",
+"chapter": "5", "lecture": "1", "topic": "Returns", "name":
+"Holding-period return", "formula": "HPR = (P1 − P0 + D1) / P0",
+"variables": "P0 initial price; P1 ending price; D1 distribution",
+"use<em>when": "One-period stock return / valuation rearrangements",
+"priority": "Supporting", "source": "Lecture 1 / Ch. 5 practice",
+"notes": "Directly reused in Ch. 18 one-period valuation logic."},
+{"id": "P-02", "scope": "Prerequisite", "chapter": "5", "lecture": "1",
+"topic": "Statistics", "name": "Expected return", "formula": "E(r) = Σ
+p</em>s r<em>s", "variables": "p</em>s state probability; r<em>s state
+return", "use</em>when": "State/probability problems", "priority":
+"Supporting", "source": "Lecture 1", "notes": ""}, {"id": "P-03",
+"scope": "Prerequisite", "chapter": "5", "lecture": "1", "topic":
+"Statistics", "name": "Variance and standard deviation", "formula": "σ²
+= Σ p<em>s[r_s − E(r)]²; σ = √σ²", "variables": "σ² variance; σ standard
+deviation", "use</em>when": "Risk calculations; inputs to CAPM/index
+model/performance measures", "priority": "Core prerequisite", "source":
+"Lecture 1 / Ch. 5 practice", "notes": ""}, {"id": "P-04", "scope":
+"Prerequisite", "chapter": "5–7", "lecture": "1–3", "topic":
+"Statistics", "name": "Covariance and correlation", "formula": "Cov(i,j)
+= E[(r<em>i−μ</em>i)(r<em>j−μ</em>j)]; ρ<em>ij =
+Cov(i,j)/(σ</em>iσ<em>j)", "variables": "Cov covariance; ρ correlation",
+"use</em>when": "Beta, income hedging, portfolio risk", "priority":
+"Core prerequisite", "source": "Lectures 1–3", "notes": ""}, {"id":
+"P-05", "scope": "Prerequisite", "chapter": "6", "lecture": "2",
+"topic": "Portfolio return", "name": "Portfolio expected return",
+"formula": "E(r<em>p) = Σ w</em>i E(r<em>i)", "variables": "w</em>i
+portfolio weights", "use<em>when": "Weighted portfolio return /
+portfolio beta analogy", "priority": "Supporting", "source": "Lecture
+2", "notes": ""}, {"id": "P-06", "scope": "Prerequisite", "chapter":
+"6", "lecture": "2", "topic": "Portfolio risk", "name": "Two-asset
+portfolio variance", "formula": "σ</em>p² = w1²σ1² + w2²σ2² +
+2w1w2Cov12", "variables": "w weights; σ risk; Cov covariance",
+"use<em>when": "Income-hedging combined variance and risk
+decomposition", "priority": "Core prerequisite", "source": "Lecture 2",
+"notes": ""}, {"id": "P-07", "scope": "Prerequisite", "chapter": "6",
+"lecture": "2", "topic": "Utility", "name": "Mean-variance utility",
+"formula": "U = E(r) − ½Aσ²", "variables": "A risk aversion",
+"use</em>when": "Income-hedging optimization", "priority": "Core
+prerequisite", "source": "Lecture 2 / Lecture 6", "notes": ""}, {"id":
+"F08-01", "scope": "Final", "chapter": "8", "lecture": "4", "topic":
+"Index model", "name": "Excess return", "formula": "er<em>i,t =
+r</em>i,t − r<em>f,t", "variables": "r</em>i asset return; r<em>f
+risk-free", "use</em>when": "CAPM/SCL regressions", "priority": "Core",
+"source": "Lecture 4, slide 54", "notes": ""}, {"id": "F08-02", "scope":
+"Final", "chapter": "8", "lecture": "4", "topic": "Index model", "name":
+"Security Characteristic Line (SCL)", "formula": "r<em>i,t − r</em>f,t =
+α<em>i + β</em>i(r<em>M,t − r</em>f,t) + ε<em>i,t", "variables": "α
+intercept; β slope; ε residual", "use</em>when": "Estimate alpha/beta
+from historical excess returns", "priority": "Core", "source": "Lecture
+4, slides 31, 54", "notes": ""}, {"id": "F08-03", "scope": "Final",
+"chapter": "8/9", "lecture": "4", "topic": "Beta", "name": "Beta from
+covariance", "formula": "β<em>i = Cov(r</em>i−r<em>f, r</em>M−r<em>f) /
+Var(r</em>M−r<em>f)", "variables": "β systematic-risk exposure",
+"use</em>when": "Compute beta without regression output", "priority":
+"Core", "source": "Lecture 4, slides 36–39, 55", "notes": ""}, {"id":
+"F08-04", "scope": "Final", "chapter": "8", "lecture": "4", "topic":
+"Index model", "name": "Covariance between two securities", "formula":
+"Cov(r<em>i,r</em>j) = β<em>i β</em>j σ<em>M²", "variables": "β</em>i,
+β<em>j betas; σ</em>M market SD", "use<em>when": "Single-index-model
+covariance questions", "priority": "Core", "source": "Ch. 8 practice
+Q1", "notes": "Assumes residuals are uncorrelated across securities."},
+{"id": "F08-05", "scope": "Final", "chapter": "8", "lecture": "4",
+"topic": "Risk decomposition", "name": "Total variance in index model",
+"formula": "σ</em>i² = β<em>i²σ</em>M² + σ²(ε<em>i)", "variables":
+"first term systematic; second idiosyncratic", "use</em>when":
+"Decompose total risk", "priority": "Core", "source": "Lecture 4, slides
+43–45", "notes": ""}, {"id": "F08-06", "scope": "Final", "chapter": "8",
+"lecture": "4", "topic": "Risk decomposition", "name": "R-squared",
+"formula": "R² = β<em>i²σ</em>M² / σ<em>i² = systematic variance / total
+variance", "variables": "R² fraction of variance explained by market",
+"use</em>when": "Find R² or solve for total SD", "priority": "Core",
+"source": "Lecture 4, slides 47–48; Ch. 8 practice Q3", "notes": ""},
+{"id": "F08-07", "scope": "Final", "chapter": "8", "lecture": "4",
+"topic": "Risk decomposition", "name": "Idiosyncratic variance",
+"formula": "σ²<em>idio = σ</em>i² − β<em>i²σ</em>M²", "variables":
+"σ<em>i² total variance", "use</em>when": "Residual/firm-specific risk",
+"priority": "Core", "source": "Lecture 4, slides 45, 57", "notes": ""},
+{"id": "F09-01", "scope": "Final", "chapter": "9", "lecture": "4",
+"topic": "CAPM", "name": "CAPM expected return", "formula": "E(r<em>i) =
+r</em>f + β<em>i[E(r<em>M) − r</em>f]", "variables": "market risk
+premium = E(r</em>M)−r<em>f", "use</em>when": "Fair/required return;
+discount rate for Ch. 18", "priority": "Core", "source": "Lecture 4,
+slide 17; Ch. 9 practice", "notes": ""}, {"id": "F09-02", "scope":
+"Final", "chapter": "9/24", "lecture": "4/5", "topic": "Alpha", "name":
+"Jensen/CAPM alpha", "formula": "α<em>i = r̄</em>i − [r̄<em>f +
+β</em>i(r̄<em>M − r̄</em>f)]", "variables": "actual average minus
+CAPM-predicted return", "use<em>when": "Mispricing and performance
+evaluation", "priority": "Core", "source": "Lecture 4, slides 22, 41;
+Lecture 5, slide 8", "notes": "Positive alpha ↔︎ return above SML in
+course framing."}, {"id": "F09-03", "scope": "Final", "chapter": "9",
+"lecture": "4", "topic": "Treynor / SML", "name": "Treynor
+reward-to-systematic-risk", "formula": "T</em>i = [E(r<em>i) − r</em>f]
+/ β<em>i", "variables": "β systematic risk", "use</em>when": "CAPM
+reward-to-risk comparison", "priority": "Core", "source": "Lecture 4,
+slide 15", "notes": ""}, {"id": "F09-04", "scope": "Final", "chapter":
+"9", "lecture": "4", "topic": "SML", "name": "Security Market Line",
+"formula": "Expected return = r<em>f + β × market risk premium",
+"variables": "intercept r</em>f; slope E(r<em>M)−r</em>f",
+"use<em>when": "Graph expected return vs beta", "priority": "Core",
+"source": "Lecture 4, slides 17, 20", "notes": ""}, {"id": "F09-05",
+"scope": "Final", "chapter": "9", "lecture": "4", "topic": "Portfolio
+beta", "name": "Portfolio beta", "formula": "β</em>p = Σ w<em>i
+β</em>i", "variables": "w<em>i portfolio weights", "use</em>when":
+"Portfolio systematic risk", "priority": "Core", "source": "Ch. 9
+practice Q12/Q17", "notes": "Weighted average, analogous to portfolio
+expected return."}, {"id": "F09-06", "scope": "Final", "chapter": "9",
+"lecture": "4", "topic": "Zero beta", "name": "Expected return of
+zero-beta security", "formula": "If β = 0, CAPM ⇒ E(r) = r<em>f",
+"variables": "β=0", "use</em>when": "Zero-beta questions", "priority":
+"Supporting", "source": "Ch. 9 practice Q18", "notes": ""}, {"id":
+"F18-01", "scope": "Final", "chapter": "18", "lecture": "7", "topic":
+"Intrinsic value", "name": "One-period intrinsic value", "formula":
+"V<em>t = [E(P<em>{t+1}) + E(D</em>{t+1})] / (1+r</em>t)", "variables":
+"P future price; D dividend; r discount rate", "use<em>when":
+"One-period stock valuation", "priority": "Core", "source": "Lecture 7,
+slides 8–9", "notes": ""}, {"id": "F18-02", "scope": "Final", "chapter":
+"18", "lecture": "7", "topic": "Dividend discount model", "name":
+"General DDM", "formula": "V</em>0 = Σ<em>{k=0..∞}
+E</em>0(D<em>{k+1})/(1+r)^{k+1}", "variables": "expected future
+dividends", "use</em>when": "General intrinsic value", "priority":
+"Core", "source": "Lecture 7, slides 13–14", "notes": ""}, {"id":
+"F18-03", "scope": "Final", "chapter": "18", "lecture": "7", "topic":
+"Dividend growth", "name": "Dividend growth", "formula": "D<em>{t+1} =
+D</em>t(1+g)", "variables": "g constant growth rate", "use<em>when":
+"Forecast next dividend", "priority": "Core", "source": "Lecture 7,
+slides 24–25", "notes": ""}, {"id": "F18-04", "scope": "Final",
+"chapter": "18", "lecture": "7", "topic": "Gordon growth DDM", "name":
+"Gordon growth model", "formula": "P</em>0 = D<em>1/(r−g) =
+D</em>0(1+g)/(r−g), with r &gt; g", "variables": "r required return; g
+growth", "use<em>when": "Constant-growth intrinsic value", "priority":
+"Core", "source": "Lecture 7, slide 28", "notes": ""}, {"id": "F18-05",
+"scope": "Final", "chapter": "18", "lecture": "7", "topic": "Expected
+return", "name": "DDM expected/required return", "formula": "r =
+D</em>1/P<em>0 + g", "variables": "dividend yield + growth",
+"use</em>when": "Solve required return or implied growth", "priority":
+"Core", "source": "Lecture 7, slides 31–32", "notes": ""}, {"id":
+"F18-06", "scope": "Final", "chapter": "18", "lecture": "7", "topic":
+"Price growth", "name": "Price growth under constant-growth DDM",
+"formula": "P<em>1 = P</em>0(1+g)", "variables": "price and dividends
+grow at same g under model", "use<em>when": "Forecast price growth",
+"priority": "Supporting", "source": "Lecture 7, slide 33", "notes": ""},
+{"id": "F18-07", "scope": "Final", "chapter": "18", "lecture": "7",
+"topic": "Sustainable growth", "name": "Growth from reinvestment",
+"formula": "g = b × ROE", "variables": "b plowback/retention ratio",
+"use</em>when": "Growth from retained earnings", "priority": "Core",
+"source": "Lecture 7, slide 39; Ch. 18 practice", "notes": ""}, {"id":
+"F18-08", "scope": "Final", "chapter": "18", "lecture": "7", "topic":
+"Payout", "name": "Dividend payout", "formula": "D<em>1 = (1−b)E</em>1",
+"variables": "1−b payout ratio; E1 EPS", "use<em>when": "Convert EPS to
+dividend", "priority": "Core", "source": "Lecture 7, slide 40", "notes":
+""}, {"id": "F18-09", "scope": "Final", "chapter": "18", "lecture": "7",
+"topic": "Reinvestment valuation", "name": "Value with growth",
+"formula": "P</em>0,growth = (1−b)E<em>1 / [r − b×ROE]", "variables": "b
+retention; ROE profitability", "use</em>when": "Value firm with
+reinvestment", "priority": "Core", "source": "Lecture 7, slides 40, 43",
+"notes": ""}, {"id": "F18-10", "scope": "Final", "chapter": "18",
+"lecture": "7", "topic": "No-growth value", "name": "No-growth value",
+"formula": "P<em>0,no growth = E</em>1 / r", "variables": "all earnings
+paid out; b=0, g=0", "use<em>when": "Benchmark value / assets in place",
+"priority": "Core", "source": "Lecture 7, slide 42", "notes": ""},
+{"id": "F18-11", "scope": "Final", "chapter": "18", "lecture": "7",
+"topic": "Growth decision", "name": "When retention adds value",
+"formula": "Reinvest when ROE &gt; r; neutral if ROE = r; destroys value
+if ROE &lt; r", "variables": "ROE internal project return; r required
+return", "use</em>when": "Decide whether higher plowback helps
+shareholders", "priority": "Core", "source": "Lecture 7, slides 45–48",
+"notes": ""}, {"id": "F18-12", "scope": "Final", "chapter": "18",
+"lecture": "7", "topic": "PVGO", "name": "Present value of growth
+opportunities", "formula": "PVGO = P<em>0,growth − P</em>0,no growth =
+P<em>0 − E</em>1/r", "variables": "PVGO growth opportunity value",
+"use<em>when": "Separate assets-in-place from growth", "priority":
+"Core", "source": "Lecture 7, slides 49–51", "notes": ""}, {"id":
+"F18-13", "scope": "Final", "chapter": "18", "lecture": "7", "topic":
+"P/E", "name": "Forward theoretical P/E", "formula": "P</em>0/E<em>1 =
+(1−b)/(r−g) = (1−b)/(r−b×ROE)", "variables": "E1 forward EPS",
+"use</em>when": "Value using fundamentals", "priority": "Core",
+"source": "Lecture 7, slides 54–56; Ch. 18 practice Q14/Q18", "notes":
+""}, {"id": "F18-14", "scope": "Final", "chapter": "18", "lecture": "7",
+"topic": "P/E mispricing", "name": "P/E mispricing test", "formula":
+"Actual P<em>0/E</em>1 &gt; theoretical ⇒ overvalued; actual &lt;
+theoretical ⇒ undervalued", "variables": "theoretical = (1−b)/(r−g)",
+"use<em>when": "Compare market P/E with fundamental P/E", "priority":
+"Supporting", "source": "Lecture 7, slide 68", "notes": ""}, {"id":
+"F18-15", "scope": "Final", "chapter": "18", "lecture": "7", "topic":
+"PEG", "name": "PEG ratio", "formula": "PEG = (P/E) / annual EPS
+growth", "variables": "forward or trailing inputs", "use</em>when":
+"Growth-adjusted P/E", "priority": "Supporting", "source": "Lecture 7,
+slide 69", "notes": ""}, {"id": "F18-16", "scope": "Final", "chapter":
+"18", "lecture": "7", "topic": "No-dividend shortcut", "name": "If r =
+ROE", "formula": "P<em>0 = E</em>1/ROE and P/E<em>1 = 1/ROE",
+"variables": "special case r=ROE", "use</em>when": "No/low dividend
+back-of-envelope valuation", "priority": "Supporting", "source":
+"Lecture 7, slide 73; Ch. 18 practice Q1/Q15", "notes": ""}, {"id":
+"F24-01", "scope": "Final", "chapter": "24", "lecture": "5", "topic":
+"Performance", "name": "Sharpe ratio", "formula": "SR<em>p = [E(r<em>p)
+− r</em>f] / σ</em>p", "variables": "σ<em>p total risk", "use</em>when":
+"Whole risky portfolio / total-risk performance", "priority": "Core",
+"source": "Lecture 5, slide 6", "notes": ""}, {"id": "F24-02", "scope":
+"Final", "chapter": "24", "lecture": "5", "topic": "Performance",
+"name": "Treynor measure", "formula": "TM<em>p = [E(r<em>p) − r</em>f] /
+β</em>p", "variables": "β<em>p systematic risk", "use</em>when":
+"Well-diversified portfolio / systematic-risk performance", "priority":
+"Core", "source": "Lecture 5, slide 7", "notes": ""}, {"id": "F24-03",
+"scope": "Final", "chapter": "24", "lecture": "5", "topic":
+"Performance", "name": "Jensen alpha", "formula": "α<em>p = r̄</em>p −
+[r<em>f + β</em>p(r̄<em>M−r</em>f)]", "variables": "same as CAPM alpha",
+"use<em>when": "Abnormal return in return units", "priority": "Core",
+"source": "Lecture 5, slide 8", "notes": ""}, {"id": "F24-04", "scope":
+"Final", "chapter": "24", "lecture": "5", "topic": "Performance",
+"name": "Information ratio", "formula": "IR</em>p = α<em>p /
+σ(ε</em>p)", "variables": "σ(ε<em>p) residual/idiosyncratic SD",
+"use</em>when": "Active portfolio relative to market", "priority":
+"Core", "source": "Lecture 5, slide 9", "notes": ""}, {"id": "F24-05",
+"scope": "Final", "chapter": "24", "lecture": "5", "topic":
+"Benchmarking", "name": "Active return", "formula": "AR =
+average(r<em>p) − average(r</em>b)", "variables": "b benchmark",
+"use<em>when": "Return above benchmark", "priority": "Supporting",
+"source": "Lecture 5, slide 10", "notes": ""}, {"id": "F24-06", "scope":
+"Final", "chapter": "24", "lecture": "5", "topic": "Benchmarking",
+"name": "Tracking error", "formula": "TE = SD(AR)", "variables": "AR
+time series of active returns", "use</em>when": "Risk taken to beat
+benchmark", "priority": "Supporting", "source": "Lecture 5, slide 10",
+"notes": ""}, {"id": "F24-07", "scope": "Final", "chapter": "24",
+"lecture": "5", "topic": "Benchmarking", "name": "Appraisal ratio",
+"formula": "ApR = AR / TE", "variables": "active return / tracking
+error", "use<em>when": "Simpler information-ratio version with
+benchmark", "priority": "Supporting", "source": "Lecture 5, slides
+10–11", "notes": ""}, {"id": "F24-08", "scope": "Final", "chapter":
+"24", "lecture": "5", "topic": "M²", "name": "M² matching weights",
+"formula": "Weight in p = σ</em>M/σ<em>p; weight in T-bill = 1 −
+σ</em>M/σ<em>p", "variables": "match hypothetical total risk to market",
+"use</em>when": "Find adjusted portfolio weights", "priority": "Core",
+"source": "Lecture 5, slides 28–29; practice Q8/Q16", "notes": ""},
+{"id": "F24-09", "scope": "Final", "chapter": "24", "lecture": "5",
+"topic": "M²", "name": "M² measure", "formula": "μ<em>hyp = r</em>f +
+(σ<em>M/σ</em>p)(μ<em>p−r</em>f); M² = μ<em>hyp − μ</em>M", "variables":
+"hypothetical matches market SD", "use<em>when": "Return advantage at
+equal total risk", "priority": "Core", "source": "Lecture 5, slide 30;
+practice Q9/Q17", "notes": "Equivalent: M² = σ</em>M(SR<em>p −
+SR</em>M)."}, {"id": "F24-10", "scope": "Final", "chapter": "24",
+"lecture": "5", "topic": "T²", "name": "T² matching weights", "formula":
+"Weight in p = 1/β<em>p; weight in T-bill = (β</em>p−1)/β<em>p",
+"variables": "match hypothetical beta to market beta=1", "use</em>when":
+"Find adjusted portfolio weights", "priority": "Core", "source":
+"Lecture 5, slides 34–35; practice Q18", "notes": ""}, {"id": "F24-11",
+"scope": "Final", "chapter": "24", "lecture": "5", "topic": "T²",
+"name": "T² measure", "formula": "μ<em>hyp = r</em>f +
+(μ<em>p−r</em>f)/β<em>p; T² = μ</em>hyp − μ<em>M", "variables":
+"hypothetical matches market beta", "use</em>when": "Return advantage at
+equal systematic risk", "priority": "Core", "source": "Lecture 5, slides
+35–36; practice Q19", "notes": ""}, {"id": "F24-12", "scope": "Final",
+"chapter": "24", "lecture": "5", "topic": "Relative performance",
+"name": "Relative Sharpe", "formula": "RSR<em>p = SR</em>p / SR<em>M",
+"variables": "market benchmark", "use</em>when": "Ratio comparison to
+market", "priority": "Supporting", "source": "Lecture 5, slide 14",
+"notes": ""}, {"id": "F24-13", "scope": "Final", "chapter": "24",
+"lecture": "5", "topic": "Relative performance", "name": "Relative
+Treynor", "formula": "RTM<em>p = TM</em>p / TM<em>M", "variables":
+"market benchmark", "use</em>when": "Ratio comparison to market",
+"priority": "Supporting", "source": "Lecture 5, slide 15", "notes": ""},
+{"id": "F24-14", "scope": "Final", "chapter": "24", "lecture": "5",
+"topic": "Market timing", "name": "Simple market timing ability",
+"formula": "MTA = p1 + p2 − 1", "variables": "p1 correct bullish
+fraction; p2 correct bearish fraction", "use<em>when": "Evaluate
+directional timing skill", "priority": "Core", "source": "Lecture 5,
+slides 47–49", "notes": "Random timing gives MTA = 0."}, {"id":
+"F24-15", "scope": "Final", "chapter": "24", "lecture": "5", "topic":
+"Market timing", "name": "Timing regression with beta boost", "formula":
+"r</em>i,t−r<em>f,t = α</em>i + β<em>i(r</em>M,t−r<em>f,t) +
+c</em>i(r<em>M,t−r</em>f,t)D<em>t + ε</em>i,t", "variables": "D<em>t=1
+in bull market, 0 otherwise", "use</em>when": "Test whether beta rises
+in good markets", "priority": "Core", "source": "Lecture 5, slides
+54–56", "notes": "Bull beta = β<em>i + c</em>i; timing ability in course
+model if c<em>i &gt; 0."}, {"id": "F24-16", "scope": "Final", "chapter":
+"24", "lecture": "5", "topic": "Backtesting", "name": "Real-time
+out-of-sample portfolio return", "formula": "R</em>p,t+1 = Σ<em>i
+w</em>{i,t} r<em>{i,t+1}", "variables": "weights use information only
+through t", "use</em>when": "Avoid look-ahead bias when rebalancing",
+"priority": "Supporting", "source": "Lecture 5, slides 67–70", "notes":
+""}, {"id": "F06-01", "scope": "Final", "chapter": "Income hedging",
+"lecture": "6", "topic": "Human capital", "name": "Human-capital
+weight", "formula": "w<em>y = Y</em>0 / (F<em>0 + Y</em>0)",
+"variables": "Y0 income/human-capital component; F0 financial wealth",
+"use<em>when": "Set fixed nontradable wealth weight", "priority":
+"Core", "source": "Lecture 6, slide 16", "notes": ""}, {"id": "F06-02",
+"scope": "Final", "chapter": "Income hedging", "lecture": "6", "topic":
+"Weights", "name": "Global wealth weights", "formula": "w</em>y + w<em>f
++ w</em>p = 1; w<em>f = 1 − w</em>y − w<em>p", "variables": "y human
+capital; f risk-free; p risky portfolio", "use</em>when": "Recover
+risk-free allocation", "priority": "Core", "source": "Lecture 6, slide
+17", "notes": ""}, {"id": "F06-03", "scope": "Final", "chapter": "Income
+hedging", "lecture": "6", "topic": "Combined return", "name": "Combined
+return", "formula": "R<em>c = w</em>f R<em>f + w</em>p R<em>p + w</em>y
+R<em>y", "variables": "three wealth sources", "use</em>when": "Total
+wealth return", "priority": "Core", "source": "Lecture 6, slide 19",
+"notes": ""}, {"id": "F06-04", "scope": "Final", "chapter": "Income
+hedging", "lecture": "6", "topic": "Combined return", "name": "Expected
+combined return", "formula": "E(R<em>c) = R</em>f +
+w<em>y[E(R<em>y)−R</em>f] + w</em>p[E(R<em>p)−R</em>f]", "variables":
+"R<em>f known", "use</em>when": "Utility optimization input",
+"priority": "Core", "source": "Lecture 6, slide 20", "notes": ""},
+{"id": "F06-05", "scope": "Final", "chapter": "Income hedging",
+"lecture": "6", "topic": "Combined risk", "name": "Combined variance",
+"formula": "Var(R<em>c) = w</em>y²σ<em>y² + w</em>p²σ<em>p² +
+2w</em>yw<em>pσ</em>py", "variables": "σ<em>py covariance of portfolio
+and income returns", "use</em>when": "Account for income/portfolio
+covariance", "priority": "Core", "source": "Lecture 6, slide 21",
+"notes": ""}, {"id": "F06-06", "scope": "Final", "chapter": "Income
+hedging", "lecture": "6", "topic": "Utility", "name": "Global utility",
+"formula": "U = E(R<em>c) − ½A Var(R</em>c)", "variables": "A risk
+aversion", "use<em>when": "Choose risky weight", "priority": "Core",
+"source": "Lecture 6, slides 19,22", "notes": ""}, {"id": "F06-07",
+"scope": "Final", "chapter": "Income hedging", "lecture": "6", "topic":
+"Optimal risky weight", "name": "Optimal risky portfolio weight —
+covariance form", "formula": "w</em>p* = [E(R<em>p)−R</em>f]/(Aσ<em>p²)
+− w</em>y σ<em>py/σ</em>p²", "variables": "first term growth; second
+term hedge", "use<em>when": "Solve allocation with income risk",
+"priority": "Core", "source": "Lecture 6, slide 23", "notes": ""},
+{"id": "F06-08", "scope": "Final", "chapter": "Income hedging",
+"lecture": "6", "topic": "Optimal risky weight", "name": "Optimal risky
+portfolio weight — correlation form", "formula": "w</em>p* =
+SR<em>p/(Aσ</em>p) − w<em>y(σ</em>y/σ<em>p)Corr(p,y)", "variables":
+"SR</em>p=[E(R<em>p)−R</em>f]/σ<em>p", "use</em>when": "Fast
+income-hedging formula", "priority": "Core", "source": "Lecture 6, slide
+24", "notes": ""}, {"id": "F06-09", "scope": "Final", "chapter": "Income
+hedging", "lecture": "6", "topic": "Hedge term", "name": "Income-hedging
+component", "formula": "IH = − w<em>y(σ</em>y/σ<em>p)Corr(p,y)",
+"variables": "negative corr ⇒ positive hedge term; positive corr ⇒
+negative", "use</em>when": "Interpret labor-income hedge", "priority":
+"Core", "source": "Lecture 6, slides 25–29", "notes": ""}]; let
+state={chapter:'all',topic:'all',formula:'all',difficulty:'all',math:'all',search:'',index:0,selected:null,revealed:false,attempts:{},attemptCount:0,correctCount:0};
+function safeLoad(){try{const
+x=JSON.parse(localStorage.getItem('fin650<em>final</em>progress')||'null');if(x&amp;&amp;typeof
+x==='object'){state.attempts=x.attempts||{};state.attemptCount=Number(x.attemptCount)||0;state.correctCount=Number(x.correctCount)||0;}}catch(e){localStorage.removeItem('fin650<em>final</em>progress')}}
+function
+save(){try{localStorage.setItem('fin650<em>final</em>progress',JSON.stringify({attempts:state.attempts,attemptCount:state.attemptCount,correctCount:state.correctCount}))}catch(e){}}
+safeLoad(); const uniq=(arr)=&gt;[...new
+Set(arr)].sort((a,b)=&gt;String(a).localeCompare(String(b),undefined,{numeric:true}));
+function fillSelect(id,vals){const
+el=document.getElementById(id);vals.forEach(v=&gt;{const
+o=document.createElement('option');o.value=v;o.textContent=v;el.appendChild(o)})}
+fillSelect('topicFilter',uniq(QUESTIONS.map(q=&gt;q.topic)));
+fillSelect('formulaFilter',uniq(QUESTIONS.map(q=&gt;q.formula<em>type)));
+fillSelect('formulaChapter',uniq(FORMULAS.map(f=&gt;String(f.chapter))));
+function deck(){const s=state.search.trim().toLowerCase();return
+QUESTIONS.filter(q=&gt;(state.chapter==='all'||String(q.chapter)===state.chapter)&amp;&amp;(state.topic==='all'||q.topic===state.topic)&amp;&amp;(state.formula==='all'||q.formula</em>type===state.formula)&amp;&amp;(state.difficulty==='all'||q.difficulty===state.difficulty)&amp;&amp;(state.math==='all'||q.math===state.math)&amp;&amp;(!s||[q.id,q.question,q.topic,q.formula_type,q.context].join('
+').toLowerCase().includes(s)));} function
+stats(){document.getElementById('attempts').textContent=state.attemptCount;document.getElementById('correct').textContent=state.correctCount;const
+inc=state.attemptCount-state.correctCount;document.getElementById('incorrect').textContent=inc;document.getElementById('accuracy').textContent=state.attemptCount?Math.round(100</em>state.correctCount/state.attemptCount)+'%':'—';document.getElementById('attemptedCards').textContent=Object.keys(state.attempts).length+'
+/ '+QUESTIONS.length;} function esc(s){return
+String(s??'').replace(/[&amp;&lt;&gt;"]/g,c=&gt;({'&amp;':'&amp;','&lt;':'&lt;','&gt;':'&gt;','"':'"'}[c]))}
+function renderCard(){const d=deck();const
+mount=document.getElementById('cardMount');if(!d.length){mount.innerHTML='<div class="card empty">No
+cards match these
+filters.</div>';stats();return};state.index=Math.max(0,Math.min(state.index,d.length-1));const
+q=d[state.index];const selected=state.selected;let choices='';for(const
+L of ['A','B','C','D','E']){let cls='choice';if(selected===L)cls+='
+selected';if(state.revealed&amp;&amp;L===q.answer)cls+='
+correct';if(state.revealed&amp;&amp;selected===L&amp;&amp;L!==q.answer)cls+='
+wrong';choices+=<code>&lt;button class="${cls}" data-choice="${L}"&gt;&lt;span&gt;○&lt;/span&gt;&lt;span&gt;&lt;b&gt;${L}.&lt;/b&gt; ${esc(q['option_'+L])}&lt;/span&gt;&lt;/button&gt;</code>};mount.innerHTML=<code>&lt;div class="card"&gt;&lt;div class="card-index"&gt;CARD ${state.index+1} OF ${d.length} · ${esc(q.id)}&lt;/div&gt;&lt;div class="tags"&gt;&lt;span class="tag"&gt;Chapter ${q.chapter}&lt;/span&gt;&lt;span class="tag"&gt;${q.difficulty}&lt;/span&gt;&lt;span class="tag"&gt;${esc(q.topic)}&lt;/span&gt;&lt;span class="tag"&gt;Math: ${q.math}&lt;/span&gt;${q.formula_id&amp;&amp;q.formula_id!=='Concept only'?</code><span class="tag">Formula:
+${esc(q.formula_id)}</span><code>:''}&lt;/div&gt;${q.context?</code><div class="context">${esc(q.context)}</div><code>:''}&lt;div class="question"&gt;${esc(q.question)}&lt;/div&gt;&lt;div class="choices"&gt;${choices}&lt;/div&gt;&lt;div class="actions"&gt;&lt;button class="primary" id="checkBtn" ${selected?'':'disabled'}&gt;Check answer&lt;/button&gt;&lt;button class="secondary" id="prevBtn"&gt;Previous&lt;/button&gt;&lt;button class="secondary" id="nextBtn"&gt;Next&lt;/button&gt;&lt;button class="secondary" id="randomBtn"&gt;Random&lt;/button&gt;&lt;/div&gt;&lt;div class="feedback ${state.revealed?'show '+(selected===q.answer?'good':'bad'):''}"&gt;${state.revealed?</code><b>${selected===q.answer?'Correct':'Correct
+answer:
+'+q.answer}</b><br>${esc(q.explanation)}<code>:''}&lt;/div&gt;&lt;/div&gt;</code>;
+document.querySelectorAll('[data-choice]').forEach(b=&gt;b.onclick=()=&gt;{if(state.revealed)return;state.selected=b.dataset.choice;renderCard()});
+document.getElementById('checkBtn').onclick=()=&gt;{if(!state.selected||state.revealed)return;state.revealed=true;state.attemptCount++;if(state.selected===q.answer)state.correctCount++;state.attempts[q.id]={correct:state.selected===q.answer,selected:state.selected};save();renderCard();stats()};
+document.getElementById('nextBtn').onclick=()=&gt;{state.index=(state.index+1)%d.length;state.selected=null;state.revealed=false;renderCard()};document.getElementById('prevBtn').onclick=()=&gt;{state.index=(state.index-1+d.length)%d.length;state.selected=null;state.revealed=false;renderCard()};document.getElementById('randomBtn').onclick=()=&gt;{state.index=Math.floor(Math.random()<em>d.length);state.selected=null;state.revealed=false;renderCard()};stats();}
+function
+resetDeckPos(){state.index=0;state.selected=null;state.revealed=false;renderCard()}
+document.querySelectorAll('.chapter-chip').forEach(b=&gt;b.onclick=()=&gt;{document.querySelectorAll('.chapter-chip').forEach(x=&gt;x.classList.remove('active'));b.classList.add('active');state.chapter=b.dataset.ch;resetDeckPos()});
+[['topicFilter','topic'],['formulaFilter','formula'],['difficultyFilter','difficulty'],['mathFilter','math']].forEach(([id,key])=&gt;document.getElementById(id).onchange=e=&gt;{state[key]=e.target.value;resetDeckPos()});document.getElementById('searchFilter').oninput=e=&gt;{state.search=e.target.value;resetDeckPos()};
+document.querySelectorAll('.tab').forEach(t=&gt;t.onclick=()=&gt;{document.querySelectorAll('.tab').forEach(x=&gt;x.classList.remove('active'));document.querySelectorAll('.panel').forEach(x=&gt;x.classList.remove('active'));t.classList.add('active');document.getElementById(t.dataset.tab).classList.add('active');if(t.dataset.tab==='formulas')renderFormulas();if(t.dataset.tab==='progress')renderProgress()});
+function renderFormulas(){const
+s=document.getElementById('formulaSearch').value.trim().toLowerCase(),ch=document.getElementById('formulaChapter').value,p=document.getElementById('formulaPriority').value;const
+rows=FORMULAS.filter(f=&gt;(ch==='all'||String(f.chapter)===ch)&amp;&amp;(p==='all'||f.priority===p)&amp;&amp;(!s||Object.values(f).join('
+').toLowerCase().includes(s)));document.getElementById('formulaMount').innerHTML=rows.length?rows.map(f=&gt;<code>&lt;div class="formula-card"&gt;&lt;div class="formula-top"&gt;&lt;div&gt;&lt;div class="small"&gt;${esc(f.id)} · ${esc(f.scope)} · Chapter ${esc(f.chapter)} / Lecture ${esc(f.lecture)}&lt;/div&gt;&lt;div class="formula-name"&gt;${esc(f.name)}&lt;/div&gt;&lt;/div&gt;&lt;span class="priority"&gt;${esc(f.priority)}&lt;/span&gt;&lt;/div&gt;&lt;div class="eq"&gt;${esc(f.formula)}&lt;/div&gt;&lt;div class="meta"&gt;&lt;b&gt;Use when:&lt;/b&gt; ${esc(f.use_when)}&lt;br&gt;&lt;b&gt;Variables:&lt;/b&gt; ${esc(f.variables)}&lt;br&gt;&lt;b&gt;Source:&lt;/b&gt; ${esc(f.source)}${f.notes?</code><br><b>Note:</b>
+${esc(f.notes)}<code>:''}&lt;/div&gt;&lt;/div&gt;</code>).join(''):'<div class="empty">No
+formulas match.</div>'}
+['formulaSearch','formulaChapter','formulaPriority'].forEach(id=&gt;{const
+e=document.getElementById(id);e.addEventListener(id==='formulaSearch'?'input':'change',renderFormulas)});
+function renderProgress(){const att=state.attempts;let
+boxes=[];[8,9,18,24].forEach(ch=&gt;{const
+qs=QUESTIONS.filter(q=&gt;q.chapter===ch);const
+tried=qs.filter(q=&gt;att[q.id]);const
+cor=tried.filter(q=&gt;att[q.id].correct).length;const
+pct=tried.length?Math.round(100</em>cor/tried.length):0;boxes.push(<code>&lt;div class="progress-box"&gt;&lt;b&gt;Chapter ${ch}&lt;/b&gt;&lt;div class="small"&gt;${tried.length} / ${qs.length} attempted · ${pct}% accuracy&lt;/div&gt;&lt;div class="bar"&gt;&lt;span style="width:${pct}%"&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;</code>)});document.getElementById('progressMount').innerHTML=<code>&lt;div class="progress-grid"&gt;${boxes.join('')}&lt;/div&gt;&lt;div class="actions"&gt;&lt;button class="secondary" id="resetProgress"&gt;Reset progress&lt;/button&gt;&lt;/div&gt;</code>;document.getElementById('resetProgress').onclick=()=&gt;{if(confirm('Reset
+all saved study
+progress?')){state.attempts={};state.attemptCount=0;state.correctCount=0;save();stats();renderProgress()}}}
+renderCard();renderFormulas();stats(); </script></body></html></p>
